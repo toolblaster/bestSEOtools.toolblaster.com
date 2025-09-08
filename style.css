@@ -30,11 +30,13 @@ body {
 main {
     flex-grow: 1;
 }
+/* The container is just for centering and providing a max-width boundary. */
 .container {
-    width: 90%;
-    max-width: 950px; /* Constrained width for desktop */
+    width: 100%;
     margin-left: auto;
     margin-right: auto;
+    padding: 0 1rem; /* Add some padding for smaller screens */
+    box-sizing: border-box;
 }
 .comparison-table th, .comparison-table td {
     font-size: 0.7rem;
@@ -88,14 +90,16 @@ main {
     color: #f59e0b; 
     white-space: nowrap;
 }
+/* THIS IS THE KEY CHANGE: Fixed width and centering applied directly to the visible content box. */
 .legal-content {
+    width: 1050px;
+    max-width: 100%; /* Ensures it doesn't overflow on screens smaller than 1050px */
+    margin: 1rem auto; /* This centers the box */
     background-color: var(--card-bg);
     padding: 0;
-    margin: 1rem auto;
     border-radius: 0.5rem;
     box-shadow: 0 4px 6px rgba(0,0,0,0.05);
     border: 1px solid var(--card-border);
-    max-width: 100%;
     overflow: hidden;
 }
 .legal-content a:not(.cta-button) {
@@ -139,8 +143,8 @@ main {
      margin-bottom: 1rem;
 }
 .legal-content > *:not(h1):not(.page-meta):not(.intro-paragraph) {
-    margin-left: 1.5rem;
-    margin-right: 1.5rem;
+    margin-left: 2rem;
+    margin-right: 2rem;
 }
 .legal-content h2 {
     font-size: 1.2rem;
@@ -303,3 +307,4 @@ main {
         font-size: 0.625rem; /* Reduced from 0.75rem (text-xs) */
     }
 }
+
