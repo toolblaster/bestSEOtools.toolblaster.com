@@ -95,6 +95,13 @@ main {
     border-color: var(--accent-color);
     font-weight: 600;
 }
+.recommendation-card {
+    border: 1px solid var(--card-border);
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    background-color: #fff;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
 .star-rating { 
     color: #f59e0b; 
     white-space: nowrap;
