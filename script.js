@@ -40,7 +40,11 @@ document.addEventListener('DOMContentLoaded', () => {
     if (quizContainer) {
         const questions = quizContainer.querySelectorAll('.quiz-question');
         const resultContainer = document.getElementById('quiz-result');
-        const recommendationText = document.getElementById('tool-recommendation');
+        const recommendationName = document.getElementById('tool-recommendation-name');
+        const recommendationText = document.getElementById('tool-recommendation-text');
+        const recommendationPlan = document.getElementById('tool-recommendation-plan');
+        const recommendationFeature = document.getElementById('tool-recommendation-feature');
+        const recommendationLink = document.getElementById('tool-recommendation-link');
         const answers = {};
 
         quizContainer.addEventListener('click', (e) => {
@@ -92,8 +96,44 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const recommendation = semrushPoints > mangoolsPoints ? 'SEMrush' : 'KWFinder (Mangools)';
 
-            if(recommendationText && resultContainer) {
-                recommendationText.textContent = recommendation;
+            let details = {};
+
+            if (recommendation === 'SEMrush') {
+                details = {
+                    name: 'SEMrush',
+                    text: "Based on your need for advanced features and comprehensive data, SEMrush is the ideal all-in-one platform to scale your SEO efforts.",
+                    plan: "Guru Plan",
+                    feature: "Automated client reporting and in-depth site audits.",
+                    link: "#", // Add SEMrush affiliate link
+                    ctaClass: "cta-semrush"
+                };
+                if (answers.question3 === 'freelancer' && answers.question2 !== 'high') {
+                    details.plan = "Pro Plan";
+                    details.feature = "Comprehensive competitor analysis tools.";
+                }
+            } else { // KWFinder (Mangools)
+                details = {
+                    name: 'KWFinder (Mangools)',
+                    text: "For your focus on core SEO tasks with an emphasis on usability and budget, the Mangools suite is the perfect fit.",
+                    plan: "Premium Plan",
+                    feature: "Excellent keyword research with a user-friendly interface.",
+                    link: "https://mangools.com#a5ebaddebfeebf80fc747e102",
+                    ctaClass: "cta-mangools"
+                };
+                if (answers.question1 === 'beginner' && answers.question2 === 'low') {
+                    details.plan = "Basic Plan";
+                    details.feature = "Finding low-competition keywords quickly.";
+                }
+            }
+            
+            if (resultContainer && recommendationName && recommendationText && recommendationPlan && recommendationFeature && recommendationLink) {
+                recommendationName.textContent = details.name;
+                recommendationText.textContent = details.text;
+                recommendationPlan.textContent = details.plan;
+                recommendationFeature.textContent = details.feature;
+                recommendationLink.href = details.link;
+                recommendationLink.className = `cta-button mt-4 ${details.ctaClass}`; // Reset and apply classes
+                
                 resultContainer.classList.remove('hidden');
             }
         }
