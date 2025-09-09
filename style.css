@@ -16,6 +16,7 @@
 }
 html, body {
     font-family: 'Inter', sans-serif;
+    scroll-behavior: smooth;
 }
 body {
     background-color: var(--bg-color);
@@ -81,10 +82,18 @@ main {
     color: white !important;
 }
 .cta-mangools:hover { background-color: #178f66; }
-.quiz-option { cursor: pointer; }
+.quiz-option { 
+    cursor: pointer; 
+    transition: all 0.2s ease-in-out;
+}
+.quiz-option:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
 .quiz-option.selected {
     background-color: var(--link-hover-bg);
     border-color: var(--accent-color);
+    font-weight: 600;
 }
 .star-rating { 
     color: #f59e0b; 
@@ -307,4 +316,3 @@ main {
         font-size: 0.625rem; /* Reduced from 0.75rem (text-xs) */
     }
 }
-
