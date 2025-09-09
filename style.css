@@ -406,6 +406,12 @@ main {
 .toc-box summary::-webkit-details-marker {
     display: none; /* Hide the default marker for Chrome/Safari */
 }
+.toc-arrow {
+    transition: transform 0.2s ease-in-out;
+}
+details[open] .toc-arrow {
+    transform: rotate(180deg);
+}
 .toc-box h3 {
     color: var(--text-color);
 }
