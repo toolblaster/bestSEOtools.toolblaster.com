@@ -138,4 +138,40 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
     }
+
+    // --- IMAGE POPUP LOGIC ---
+    const popup = document.getElementById('image-popup');
+    const popupImg = document.getElementById('popup-img');
+    const closeBtn = document.querySelector('.close-popup');
+    const imagesToPopup = document.querySelectorAll('.workflow-image, .highlight-image');
+
+    if (popup && popupImg && closeBtn && imagesToPopup.length > 0) {
+        imagesToPopup.forEach(image => {
+            image.addEventListener('click', () => {
+                popup.classList.remove('hidden');
+                popupImg.src = image.src;
+                popupImg.alt = image.alt; // Copy alt text for accessibility
+            });
+        });
+
+        const closePopup = () => {
+            popup.classList.add('hidden');
+        };
+
+        closeBtn.addEventListener('click', closePopup);
+        
+        // Close when clicking on the overlay background
+        popup.addEventListener('click', (e) => {
+            if (e.target === popup) {
+                closePopup();
+            }
+        });
+
+        // Close with the escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && !popup.classList.contains('hidden')) {
+                closePopup();
+            }
+        });
+    }
 });
