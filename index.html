@@ -424,7 +424,7 @@
                         <h3 class="font-bold">SEMrush's X-Factor: The Complete Digital Marketing Intelligence Suite</h3>
                         <p>SEMrush goes far beyond traditional SEO, offering a suite of tools that provide a 360-degree view of the digital landscape.</p>
                         <ul class="icon-list mt-2">
-                            <li><svg class="text-orange-500" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg><div><strong>.Trends Suite:</strong> Get competitive intelligence to understand market share, audience overlap, and competitor traffic sources.</div></li>
+                            <li><svg class="text-orange-500" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg><div><strong>Trends Suite:</strong> Get competitive intelligence to understand market share, audience overlap, and competitor traffic sources.</div></li>
                             <li><svg class="text-orange-500" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg><div><strong>AppMagic:</strong> A powerful tool for mobile market intelligence, allowing you to analyze app store trends and competitor performance.</div></li>
                             <li><svg class="text-orange-500" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg><div><strong>Integrated PPC & Social Tools:</strong> Manage and analyze paid advertising and social media campaigns directly within the platform.</div></li>
                         </ul>
@@ -706,9 +706,17 @@
                             <div class="quiz-option border p-4 rounded text-center" data-value="critical">Critical</div>
                         </div>
                     </div>
-                    <div id="quiz-result" class="hidden text-center mt-4">
-                        <h3 class="text-lg font-bold">Your Recommended Tool:</h3>
-                        <p id="tool-recommendation" class="text-2xl font-bold text-green-600"></p>
+                    <div id="quiz-result" class="hidden text-center mt-6">
+                        <h3 class="text-lg font-bold mb-4">Your Personalized Recommendation:</h3>
+                        <div class="recommendation-card">
+                            <h4 id="tool-recommendation-name" class="text-2xl font-bold"></h4>
+                            <p id="tool-recommendation-text" class="mt-2 text-gray-600"></p>
+                            <div class="mt-4 p-4 bg-gray-50 rounded-lg">
+                                <p class="font-bold">Suggested Plan: <span id="tool-recommendation-plan"></span></p>
+                                <p class="text-sm text-gray-500 mt-1"><strong>Key Feature for You:</strong> <span id="tool-recommendation-feature"></span></p>
+                            </div>
+                            <a id="tool-recommendation-link" href="#" class="cta-button mt-4">Get Started</a>
+                        </div>
                     </div>
                 </div>
             </div>
