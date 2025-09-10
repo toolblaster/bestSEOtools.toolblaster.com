@@ -8,6 +8,38 @@ document.addEventListener('DOMContentLoaded', () => {
         dateElement.textContent = `Last Updated: ${displayFormatter.format(pastDate)}`;
     }
 
+    // --- STICKY HEADER CTA LOGIC ---
+    const header = document.getElementById('main-header');
+    const ctaContainer = document.getElementById('sticky-cta-container');
+    const navFlexContainer = header ? header.querySelector('.flex') : null;
+    const scrollThreshold = 100; // Pixels to scroll before CTAs appear
+
+    if (header && ctaContainer && navFlexContainer) {
+        const handleScroll = () => {
+            const isScrolled = window.scrollY > scrollThreshold;
+            const isMobile = window.innerWidth < 640;
+            
+            // On mobile, we don't show the CTA to save space
+            if (isMobile) {
+                ctaContainer.classList.add('hidden');
+                navFlexContainer.classList.add('justify-center');
+                navFlexContainer.classList.remove('justify-between');
+                return;
+            }
+
+            // Show/hide CTA container on larger screens
+            ctaContainer.classList.toggle('hidden', !isScrolled);
+            ctaContainer.classList.toggle('sm:flex', isScrolled); 
+
+            // Adjust justification
+            navFlexContainer.classList.toggle('justify-center', !isScrolled);
+            navFlexContainer.classList.toggle('justify-between', isScrolled);
+        };
+
+        window.addEventListener('scroll', handleScroll, { passive: true });
+        window.addEventListener('resize', handleScroll); // Re-check on resize
+    }
+
     // --- VISUAL SUMMARY CHART ---
     const ctx = document.getElementById('seoToolChart');
     if (ctx) {
@@ -86,7 +118,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 labels: ['SEMrush Feature Coverage', 'KWFinder Feature Coverage'],
                 datasets: [{
                     label: 'Feature Coverage of 35 Key Areas',
-                    data: [33, 15], // SEMrush has 33/35, KWFinder has approx 15/35
+                    data: [33, 15], // SEMrush has ~33/35, KWFinder has ~15/35
                     backgroundColor: [
                         'rgba(255, 110, 0, 0.7)',
                         'rgba(28, 178, 127, 0.7)'
@@ -130,21 +162,21 @@ document.addEventListener('DOMContentLoaded', () => {
         new Chart(pricingCtx, {
             type: 'bar',
             data: {
-                labels: ['SEMrush', 'KWFinder (Mangools)'],
+                labels: ['SEMrush Base Plan', 'KWFinder Base Plan'],
                 datasets: [
                     {
                         label: 'Starting Price ($/mo)',
                         data: [119, 49],
-                        backgroundColor: 'rgba(255, 110, 0, 0.7)',
-                        borderColor: 'rgba(255, 110, 0, 1)',
+                        backgroundColor: 'rgba(227, 64, 55, 0.7)',
+                        borderColor: 'rgba(227, 64, 55, 1)',
                         borderWidth: 1,
                         yAxisID: 'y-price',
                     },
                     {
-                        label: 'Keywords Tracked (Base Plan)',
+                        label: 'Keywords Tracked',
                         data: [500, 200],
-                        backgroundColor: 'rgba(28, 178, 127, 0.7)',
-                        borderColor: 'rgba(28, 178, 127, 1)',
+                        backgroundColor: 'rgba(88, 88, 88, 0.7)',
+                        borderColor: 'rgba(88, 88, 88, 1)',
                         borderWidth: 1,
                         yAxisID: 'y-keywords',
                     }
