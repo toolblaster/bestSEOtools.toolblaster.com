@@ -422,7 +422,7 @@ details[open] .toc-arrow {
 /* Quiz Wrapper */
 .quiz-wrapper {
     background: linear-gradient(135deg, #fef2f2 0%, #fef3c7 100%);
-    border-color: var(--semrush-color);
+    border-color: var(--accent-color);
 }
 
 /* Back to Top Button Styles */
