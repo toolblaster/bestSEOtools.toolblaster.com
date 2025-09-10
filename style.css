@@ -39,6 +39,7 @@ main {
     padding: 0 1rem; /* Add some padding for smaller screens */
     box-sizing: border-box;
 }
+
 .comparison-table th, .comparison-table td {
     font-size: 0.7rem;
     padding: 0.5rem;
@@ -106,11 +107,10 @@ main {
     color: #f59e0b; 
     white-space: nowrap;
 }
-/* THIS IS THE KEY CHANGE: Fixed width and centering applied directly to the visible content box. */
+
 .legal-content {
-    width: 1050px;
-    max-width: 100%; /* Ensures it doesn't overflow on screens smaller than 1050px */
-    margin: 1rem auto; /* This centers the box */
+    max-width: 1050px;
+    margin: 1rem auto;
     background-color: var(--card-bg);
     padding: 0;
     border-radius: 0.5rem;
@@ -158,7 +158,7 @@ main {
      border-bottom: 1px solid var(--card-border);
      margin-bottom: 1rem;
 }
-.legal-content > *:not(h1):not(.page-meta):not(.intro-paragraph) {
+.legal-content .section-wrapper, .legal-content .toc-box {
     margin-left: 2rem;
     margin-right: 2rem;
 }
@@ -184,14 +184,14 @@ main {
     line-height: 1.6;
     font-size: 0.9rem;
 }
-.legal-content ul:not(.icon-list):not(.action-plan-list), .legal-content ol {
+.legal-content ul:not(.icon-list):not(.action-plan-list):not(.toc-list), .legal-content ol {
     padding-left: 1.25rem; 
 }
 .section-wrapper {
     background-color: #ffffff;
     border-radius: 0.75rem;
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-    margin: 1rem 0; /* Reduced margin for tighter sections */
+    margin-bottom: 1rem;
     padding: 1.5rem;
     border-left: 4px solid var(--accent-color);
 }
@@ -367,15 +367,6 @@ main {
 }
 
 /* Quick Verdict Box */
-.quick-verdict-box {
-    background-color: #fff;
-    border: 1px solid var(--card-border);
-    border-left: 4px solid var(--accent-color);
-    border-radius: 0.5rem;
-    padding: 1.5rem;
-    margin-bottom: 1rem;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
-}
 .verdict-item {
     background-color: var(--section-bg-alt);
     border-radius: 0.375rem;
@@ -429,6 +420,39 @@ details[open] .toc-arrow {
 }
 
 
+/* Back to Top Button Styles */
+#back-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: var(--accent-color);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: none; /* Hidden by default */
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    z-index: 100;
+    transition: opacity 0.3s, transform 0.3s;
+    opacity: 0;
+    transform: translateY(10px);
+}
+
+#back-to-top.show {
+    display: flex;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+#back-to-top:hover {
+    background-color: var(--accent-color-dark);
+}
+
+
 /* Media Queries for Responsive Design */
 @media (min-width: 768px) {
     .legal-content h1 { font-size: 2rem; }
@@ -452,5 +476,10 @@ details[open] .toc-arrow {
     }
     .header-logo-slogan {
         font-size: 0.625rem; /* Reduced from 0.75rem (text-xs) */
+    }
+    .legal-content .section-wrapper, .legal-content .toc-box {
+        margin-left: 1rem;
+        margin-right: 1rem;
+        padding: 1rem;
     }
 }
