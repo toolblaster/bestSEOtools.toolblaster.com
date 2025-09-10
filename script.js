@@ -77,6 +77,168 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // --- FEATURE COVERAGE DOUGHNUT CHART ---
+    const featureCtx = document.getElementById('featureDoughnutChart');
+    if (featureCtx) {
+        new Chart(featureCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['SEMrush Feature Coverage', 'KWFinder Feature Coverage'],
+                datasets: [{
+                    label: 'Feature Coverage of 35 Key Areas',
+                    data: [33, 15], // SEMrush has 33/35, KWFinder has approx 15/35
+                    backgroundColor: [
+                        'rgba(255, 110, 0, 0.7)',
+                        'rgba(28, 178, 127, 0.7)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 110, 0, 1)',
+                        'rgba(28, 178, 127, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                let label = context.label || '';
+                                if (label) {
+                                    label += ': ';
+                                }
+                                if (context.parsed !== null) {
+                                    label += `${((context.parsed / 35) * 100).toFixed(0)}% (${context.parsed} of 35 features)`;
+                                }
+                                return label;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    }
+
+    // --- PRICING BAR CHART ---
+    const pricingCtx = document.getElementById('pricingBarChart');
+    if (pricingCtx) {
+        new Chart(pricingCtx, {
+            type: 'bar',
+            data: {
+                labels: ['SEMrush', 'KWFinder (Mangools)'],
+                datasets: [
+                    {
+                        label: 'Starting Price ($/mo)',
+                        data: [119, 49],
+                        backgroundColor: 'rgba(255, 110, 0, 0.7)',
+                        borderColor: 'rgba(255, 110, 0, 1)',
+                        borderWidth: 1,
+                        yAxisID: 'y-price',
+                    },
+                    {
+                        label: 'Keywords Tracked (Base Plan)',
+                        data: [500, 200],
+                        backgroundColor: 'rgba(28, 178, 127, 0.7)',
+                        borderColor: 'rgba(28, 178, 127, 1)',
+                        borderWidth: 1,
+                        yAxisID: 'y-keywords',
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                 plugins: {
+                    legend: {
+                        display: true,
+                        position: 'top'
+                    }
+                },
+                scales: {
+                    'y-price': {
+                        type: 'linear',
+                        display: true,
+                        position: 'left',
+                        title: {
+                            display: true,
+                            text: 'Price ($/mo)'
+                        }
+                    },
+                    'y-keywords': {
+                        type: 'linear',
+                        display: true,
+                        position: 'right',
+                        title: {
+                            display: true,
+                            text: 'Keywords Tracked'
+                        },
+                        grid: {
+                            drawOnChartArea: false, // only draw grid lines for the first Y axis
+                        },
+                    }
+                }
+            }
+        });
+    }
+    
+    // --- USER PROFILE BAR CHART ---
+    const userProfileCtx = document.getElementById('userProfileChart');
+    if (userProfileCtx) {
+        new Chart(userProfileCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Bloggers', 'Freelancers/SMBs', 'Agencies'],
+                datasets: [
+                    {
+                        label: 'KWFinder Suitability',
+                        data: [90, 70, 20],
+                        backgroundColor: 'rgba(28, 178, 127, 0.7)',
+                        borderColor: 'rgba(28, 178, 127, 1)',
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'SEMrush Suitability',
+                        data: [40, 80, 100],
+                        backgroundColor: 'rgba(255, 110, 0, 0.7)',
+                        borderColor: 'rgba(255, 110, 0, 1)',
+                        borderWidth: 1
+                    }
+                ]
+            },
+            options: {
+                indexAxis: 'y',
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return `${context.dataset.label}: ${context.raw}%`;
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Suitability Score (%)'
+                        }
+                    }
+                }
+            }
+        });
+    }
+
+
     // --- INTERACTIVE QUIZ LOGIC ---
     const quizContainer = document.getElementById('quiz-container');
     if (quizContainer) {
