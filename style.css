@@ -479,17 +479,6 @@ details[open] .toc-arrow {
         right: 0;
     }
 
-    .container {
-        padding: 0; /* Remove padding from main container on mobile */
-    }
-
-    .legal-content {
-        margin: 0;
-        border-radius: 0;
-        border-left: none;
-        border-right: none;
-    }
-
     .legal-content h1 { font-size: 1.3rem; }
     .legal-content h2 { font-size: 1.1rem; }
     .comparison-table tbody tr td:nth-child(2) {
@@ -508,12 +497,8 @@ details[open] .toc-arrow {
     }
 
     .legal-content .section-wrapper, .legal-content .toc-box {
-        margin-left: 0;
-        margin-right: 0;
-        padding-left: 1rem;
-        padding-right: 1rem;
-        border-radius: 0;
-        border-left: none;
-        border-right: none;
+        margin-left: 1rem;
+        margin-right: 1rem;
+        padding: 1rem;
     }
 }
