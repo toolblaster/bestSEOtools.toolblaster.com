@@ -175,8 +175,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     {
                         label: 'Keywords Tracked',
                         data: [500, 200],
-                        backgroundColor: 'rgba(88, 88, 88, 0.7)',
-                        borderColor: 'rgba(88, 88, 88, 1)',
+                        backgroundColor: 'rgba(59, 130, 246, 0.7)',
+                        borderColor: 'rgba(59, 130, 246, 1)',
                         borderWidth: 1,
                         yAxisID: 'y-keywords',
                     }
