@@ -1,38 +1,80 @@
 document.addEventListener('DOMContentLoaded', () => {
     // --- DYNAMIC DATE LOGIC ---
     const dateElement = document.getElementById('last-updated-date');
-    const schemaElement = document.getElementById('schema-data');
-
     if (dateElement) {
-        const daysAgoOptions = [3, 5, 7];
-        const daysAgo = daysAgoOptions[Math.floor(Math.random() * daysAgoOptions.length)];
-        
         const today = new Date();
-        const pastDate = new Date(today);
-        pastDate.setDate(today.getDate() - daysAgo);
+        const pastDate = new Date(today.setDate(today.getDate() - 5)); // Set to a consistent 5 days ago
+        const displayFormatter = new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+        dateElement.textContent = `Last Updated: ${displayFormatter.format(pastDate)}`;
+    }
 
-        const displayFormatter = new Intl.DateTimeFormat('en-US', {
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric'
-        });
-        const formattedDisplayDate = displayFormatter.format(pastDate);
-        dateElement.textContent = `Last Updated: ${formattedDisplayDate}`;
-        
-        if (schemaElement) {
-            const schemaDate = pastDate.toISOString().split('T')[0];
-            
-            try {
-                const schemaJson = JSON.parse(schemaElement.textContent);
-                const articleSchema = schemaJson['@graph'].find(item => item['@type'] === 'Article');
-                if (articleSchema) {
-                    articleSchema.dateModified = schemaDate;
+    // --- VISUAL SUMMARY CHART ---
+    const ctx = document.getElementById('seoToolChart');
+    if (ctx) {
+        new Chart(ctx, {
+            type: 'radar',
+            data: {
+                labels: ['Features', 'Ease of Use', 'Value for Money', 'Support', 'Data Accuracy'],
+                datasets: [{
+                    label: 'SEMrush',
+                    data: [9, 6, 8, 9, 9],
+                    backgroundColor: 'rgba(255, 110, 0, 0.2)',
+                    borderColor: 'rgba(255, 110, 0, 1)',
+                    borderWidth: 2,
+                    pointBackgroundColor: 'rgba(255, 110, 0, 1)',
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: 'rgba(255, 110, 0, 1)'
+                }, {
+                    label: 'KWFinder (Mangools)',
+                    data: [7, 9, 9, 8, 8],
+                    backgroundColor: 'rgba(28, 178, 127, 0.2)',
+                    borderColor: 'rgba(28, 178, 127, 1)',
+                    borderWidth: 2,
+                    pointBackgroundColor: 'rgba(28, 178, 127, 1)',
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: 'rgba(28, 178, 127, 1)'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    r: {
+                        angleLines: {
+                            color: '#e5e7eb'
+                        },
+                        grid: {
+                            color: '#e5e7eb'
+                        },
+                        pointLabels: {
+                            font: {
+                                size: 14,
+                                weight: 'bold'
+                            },
+                            color: '#374151'
+                        },
+                        ticks: {
+                            backdropColor: 'transparent',
+                            stepSize: 2
+                        },
+                         min: 0,
+                         max: 10
+                    }
+                },
+                plugins: {
+                    legend: {
+                        position: 'top',
+                         labels: {
+                            font: {
+                                size: 14
+                            }
+                        }
+                    }
                 }
-                schemaElement.textContent = JSON.stringify(schemaJson, null, 2);
-            } catch (e) {
-                console.error("Failed to parse or update schema JSON:", e);
             }
-        }
+        });
     }
 
     // --- INTERACTIVE QUIZ LOGIC ---
@@ -104,7 +146,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     text: "Based on your need for advanced features and comprehensive data, SEMrush is the ideal all-in-one platform to scale your SEO efforts.",
                     plan: "Guru Plan",
                     feature: "Automated client reporting and in-depth site audits.",
-                    link: "#", // Add SEMrush affiliate link
+                    link: "https://semrush.com/pricing", 
                     ctaClass: "cta-semrush"
                 };
                 if (answers.question3 === 'freelancer' && answers.question2 !== 'high') {
@@ -160,18 +202,35 @@ document.addEventListener('DOMContentLoaded', () => {
 
         closeBtn.addEventListener('click', closePopup);
         
-        // Close when clicking on the overlay background
         popup.addEventListener('click', (e) => {
             if (e.target === popup) {
                 closePopup();
             }
         });
 
-        // Close with the escape key
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && !popup.classList.contains('hidden')) {
                 closePopup();
             }
+        });
+    }
+
+    // --- BACK TO TOP BUTTON LOGIC ---
+    const backToTopButton = document.getElementById('back-to-top');
+    if (backToTopButton) {
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTopButton.classList.add('show');
+            } else {
+                backToTopButton.classList.remove('show');
+            }
+        });
+
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
         });
     }
 });
