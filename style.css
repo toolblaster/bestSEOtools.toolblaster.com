@@ -109,7 +109,7 @@ main {
 }
 
 .legal-content {
-    max-width: 1050px;
+    max-width: 1000px;
     margin: 1rem auto;
     background-color: var(--card-bg);
     padding: 0;
