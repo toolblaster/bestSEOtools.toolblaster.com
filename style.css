@@ -8,11 +8,11 @@
     --card-border: #eee;
     --header-bg: #ffffff;
     --footer-bg: #121212; /* Primary Black */
-    --footer-text: #a3a3a3;
+    --footer-text: #cccccc; /* Slightly decreased contrast for footer text */
     --link-hover-bg: #fef2f2;
     --section-bg-alt: #f9fafb;
-    --semrush-color: #ff6e00;
-    --mangools-color: #1cb27f;
+    --semrush-color: #CC5500; /* Darker orange for better contrast */
+    --mangools-color: #157A66; /* Darker green for better contrast */
 }
 html, body {
     font-family: 'Inter', sans-serif;
@@ -23,7 +23,7 @@ body {
     color: var(--text-color);
     margin: 0;
     line-height: 1.6;
-    font-size: 15px;
+    font-size: 14px; /* Decreased base font size for the entire page */
     display: flex;
     flex-direction: column;
     min-height: 100vh;
@@ -40,13 +40,18 @@ main {
     box-sizing: border-box;
 }
 
+/* Updated logo slogan for higher contrast */
+.header-logo-slogan {
+    color: var(--text-color) !important;
+    font-weight: 600;
+}
 .comparison-table th, .comparison-table td {
     font-size: 0.7rem;
     padding: 0.5rem;
 }
 .comparison-table tbody tr td:nth-child(2) { /* Target the feature name column */
     font-weight: 600;
-    font-size: calc(0.7rem + 2px);
+    font-size: calc(0.7rem + 1px); /* Adjusted slightly to match overall decrease */
     color: var(--text-color);
 }
 .cta-button {
@@ -60,6 +65,7 @@ main {
     width: 100%;
     text-align: center;
     margin-bottom: 0.5rem;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* Added box shadow for contrast */
 }
 .cta-button:last-child {
     margin-bottom: 0;
@@ -77,12 +83,12 @@ main {
     background-color: var(--semrush-color);
     color: white !important;
 }
-.cta-semrush:hover { background-color: #e66300; }
+.cta-semrush:hover { background-color: #B34C00; } /* Darkened hover effect */
 .cta-mangools {
     background-color: var(--mangools-color);
     color: white !important;
 }
-.cta-mangools:hover { background-color: #178f66; }
+.cta-mangools:hover { background-color: #126b56; } /* Darkened hover effect */
 .quiz-option { 
     cursor: pointer; 
     transition: all 0.2s ease-in-out;
@@ -182,7 +188,7 @@ main {
     color: var(--text-color-muted);
     margin-bottom: 1rem;
     line-height: 1.6;
-    font-size: 0.9rem;
+    font-size: 0.875rem; /* Adjusted for overall decrease */
 }
 .legal-content ul:not(.icon-list):not(.action-plan-list):not(.toc-list), .legal-content ol {
     padding-left: 1.25rem; 
@@ -463,6 +469,14 @@ details[open] .toc-arrow {
     .legal-content h1 { font-size: 2rem; }
     .legal-content h2 { font-size: 1.5rem; }
     .legal-content h3 { font-size: 1.1rem; }
+    
+    /* Decrease logo size for tablet and desktop screens */
+    .header-logo-main {
+        font-size: 1.125rem !important; /* text-lg */
+    }
+    .header-logo-slogan {
+        font-size: 0.75rem !important; /* text-sm */
+    }
 }
 
 /* Mobile-First Refinements */
@@ -501,4 +515,22 @@ details[open] .toc-arrow {
         margin-right: 1rem;
         padding: 1rem;
     }
+}
+/* Updated footer styles for higher contrast */
+footer {
+    color: var(--footer-text) !important;
+    font-weight: 600;
+}
+
+footer a {
+    color: var(--footer-text) !important;
+}
+
+footer a:hover {
+    color: #fff !important;
+}
+
+/* Explicitly target the footer text for higher contrast */
+footer .text-gray-500 {
+    font-weight: 600 !important;
 }
