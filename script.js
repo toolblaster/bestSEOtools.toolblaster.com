@@ -1,1 +1,430 @@
-document.addEventListener('DOMContentLoaded',()=>{const e=document.getElementById('last-updated-date');if(e){const t=new Date,o=new Date(t.setDate(t.getDate()-5));e.textContent=`Last Updated: ${new Intl.DateTimeFormat('en-US',{year:'numeric',month:'long',day:'numeric'}).format(o)}`}const t=document.getElementById('main-header'),o=document.getElementById('sticky-cta-container'),n=t?t.querySelector('.flex'):null;if(t&&o&&n){const e=()=>{const s=window.scrollY>100,i=window.innerWidth<640;i?(o.classList.add('hidden'),n.classList.add('justify-center'),n.classList.remove('justify-between')):(o.classList.toggle('hidden',!s),o.classList.toggle('sm:flex',s),n.classList.toggle('justify-center',!s),n.classList.toggle('justify-between',s))};window.addEventListener('scroll',e,{passive:!0}),window.addEventListener('resize',e)}const s=document.getElementById('seoToolChart');if(s)new Chart(s,{type:'radar',data:{labels:['Features','Ease of Use','Value for Money','Support','Data Accuracy'],datasets:[{label:'SEMrush',data:[9,6,8,9,9],backgroundColor:'rgba(255, 110, 0, 0.2)',borderColor:'rgba(255, 110, 0, 1)',borderWidth:2,pointBackgroundColor:'rgba(255, 110, 0, 1)',pointBorderColor:'#fff',pointHoverBackgroundColor:'#fff',pointHoverBorderColor:'rgba(255, 110, 0, 1)'},{label:'KWFinder (Mangools)',data:[7,9,9,8,8],backgroundColor:'rgba(28, 178, 127, 0.2)',borderColor:'rgba(28, 178, 127, 1)',borderWidth:2,pointBackgroundColor:'rgba(28, 178, 127, 1)',pointBorderColor:'#fff',pointHoverBackgroundColor:'#fff',pointHoverBorderColor:'rgba(28, 178, 127, 1)'}]},options:{responsive:!0,maintainAspectRatio:!1,scales:{r:{angleLines:{color:'#e5e7eb'},grid:{color:'#e5e7eb'},pointLabels:{font:{size:14,weight:'bold'},color:'#374151'},ticks:{backdropColor:'transparent',stepSize:2},min:0,max:10}},plugins:{legend:{position:'top',labels:{font:{size:14}}}}}});const i=document.getElementById('featureDoughnutChart');if(i)new Chart(i,{type:'doughnut',data:{labels:['SEMrush Feature Coverage','KWFinder Feature Coverage'],datasets:[{label:'Feature Coverage of 35 Key Areas',data:[33,15],backgroundColor:['rgba(255, 110, 0, 0.7)','rgba(28, 178, 127, 0.7)'],borderColor:['rgba(255, 110, 0, 1)','rgba(28, 178, 127, 1)'],borderWidth:1}]},options:{responsive:!0,maintainAspectRatio:!1,plugins:{legend:{position:'top'},tooltip:{callbacks:{label:function(e){let t=e.label||'';return t&&(t+=': '),null!==e.parsed&&(t+=`${(e.parsed/35*100).toFixed(0)}% (${e.parsed} of 35 features)`),t}}}}}});const a=document.getElementById('pricingBarChart');if(a)new Chart(a,{type:'bar',data:{labels:['SEMrush Base Plan','KWFinder Base Plan'],datasets:[{label:'Starting Price ($/mo)',data:[119,49],backgroundColor:'rgba(227, 64, 55, 0.7)',borderColor:'rgba(227, 64, 55, 1)',borderWidth:1,yAxisID:'y-price'},{label:'Keywords Tracked',data:[500,200],backgroundColor:'rgba(59, 130, 246, 0.7)',borderColor:'rgba(59, 130, 246, 1)',borderWidth:1,yAxisID:'y-keywords'}]},options:{responsive:!0,maintainAspectRatio:!1,plugins:{legend:{display:!0,position:'top'}},scales:{'y-price':{type:'linear',display:!0,position:'left',title:{display:!0,text:'Price ($/mo)'}},'y-keywords':{type:'linear',display:!0,position:'right',title:{display:!0,text:'Keywords Tracked'},grid:{drawOnChartArea:!1}}}}});const d=document.getElementById('userProfileChart');if(d)new Chart(d,{type:'bar',data:{labels:['Bloggers','Freelancers/SMBs','Agencies'],datasets:[{label:'KWFinder Suitability',data:[90,70,20],backgroundColor:'rgba(28, 178, 127, 0.7)',borderColor:'rgba(28, 178, 127, 1)',borderWidth:1},{label:'SEMrush Suitability',data:[40,80,100],backgroundColor:'rgba(255, 110, 0, 0.7)',borderColor:'rgba(255, 110, 0, 1)',borderWidth:1}]},options:{indexAxis:'y',responsive:!0,maintainAspectRatio:!1,plugins:{legend:{position:'top'},tooltip:{callbacks:{label:function(e){return`${e.dataset.label}: ${e.raw}%`}}}},scales:{x:{title:{display:!0,text:'Suitability Score (%)'}}}}});const r=document.getElementById('quiz-container');if(r){const e=r.querySelectorAll('.quiz-question'),t=document.getElementById('quiz-result'),o=document.getElementById('tool-recommendation-name'),n=document.getElementById('tool-recommendation-text'),s=document.getElementById('tool-recommendation-plan'),i=document.getElementById('tool-recommendation-feature'),a=document.getElementById('tool-recommendation-link'),d={};r.addEventListener('click',l=>{if(l.target.classList.contains('quiz-option')){const r=l.target.closest('.quiz-question');if(!r)return;const c=r.id,u=l.target.dataset.value;d[c]=u,r.querySelectorAll('.quiz-option').forEach(e=>e.classList.remove('selected')),l.target.classList.add('selected');const m=Array.from(e).indexOf(r);m<e.length-1?setTimeout(()=>{r.classList.add('hidden'),e[m+1].classList.remove('hidden')},300):setTimeout(function(){e.forEach(e=>e.classList.add('hidden'));let r=0,l=0;('pro'===d.question1||'agency'===d.question1)&&(r+=2),'beginner'===d.question1&&(l+=2),'high'===d.question2&&(r+=2),'low'===d.question2&&(l+=2),'agency'===d.question3&&(r+=2),('blogger'===d.question3||'freelancer'===d.question3)&&(l+=1),('audits'===d.question4||'reporting'===d.question4)&&(r+=2),'keywords'===d.question4&&(l+=2),'critical'===d.question5&&(r+=2),'not_important'===d.question5&&(l+=2);const c=r>l?'SEMrush':'KWFinder (Mangools)';let u={};'SEMrush'===c?u={name:'SEMrush',text:"Based on your need for advanced features and comprehensive data, SEMrush is the ideal all-in-one platform to scale your SEO efforts.",plan:"Guru Plan",feature:"Automated client reporting and in-depth site audits.",link:"https://semrush.com/pricing",ctaClass:"cta-semrush"}:u={name:'KWFinder (Mangools)',text:"For your focus on core SEO tasks with an emphasis on usability and budget, the Mangools suite is the perfect fit.",plan:"Premium Plan",feature:"Excellent keyword research with a user-friendly interface.",link:"https://mangools.com#a5ebaddebfeebf80fc747e102",ctaClass:"cta-mangools"},t&&o&&n&&s&&i&&a&&(o.textContent=u.name,n.textContent=u.text,s.textContent=u.plan,i.textContent=u.feature,a.href=u.link,a.className=`cta-button mt-4 ${u.ctaClass}`,t.classList.remove('hidden'))},300)}})}const l=document.getElementById('image-popup'),c=document.getElementById('popup-img'),u=document.querySelector('.close-popup'),m=document.querySelectorAll('.workflow-image, .highlight-image');if(l&&c&&u&&m.length>0){m.forEach(e=>{e.addEventListener('click',()=>{l.classList.remove('hidden'),c.src=e.src,c.alt=e.alt})});const e=()=>{l.classList.add('hidden')};u.addEventListener('click',e),l.addEventListener('click',t=>{t.target===l&&e()}),document.addEventListener('keydown',t=>{'Escape'===t.key&&!l.classList.contains('hidden')&&e()})}const g=document.getElementById('back-to-top');g&&(window.addEventListener('scroll',()=>{window.scrollY>300?g.classList.add('show'):g.classList.remove('show')}),g.addEventListener('click',()=>{window.scrollTo({top:0,behavior:'smooth'})}))});
+document.addEventListener('DOMContentLoaded', () => {
+    // --- DYNAMIC DATE LOGIC ---
+    const dateElement = document.getElementById('last-updated-date');
+    if (dateElement) {
+        const today = new Date();
+        const pastDate = new Date(today.setDate(today.getDate() - 5)); // Set to a consistent 5 days ago
+        const displayFormatter = new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+        dateElement.textContent = `Last Updated: ${displayFormatter.format(pastDate)}`;
+    }
+
+    // --- STICKY HEADER CTA LOGIC ---
+    const header = document.getElementById('main-header');
+    const ctaContainer = document.getElementById('sticky-cta-container');
+    const navFlexContainer = header ? header.querySelector('.flex') : null;
+    const scrollThreshold = 100; // Pixels to scroll before CTAs appear
+
+    if (header && ctaContainer && navFlexContainer) {
+        const handleScroll = () => {
+            const isScrolled = window.scrollY > scrollThreshold;
+            const isMobile = window.innerWidth < 640;
+            
+            // On mobile, we don't show the CTA to save space
+            if (isMobile) {
+                ctaContainer.classList.add('hidden');
+                navFlexContainer.classList.add('justify-center');
+                navFlexContainer.classList.remove('justify-between');
+                return;
+            }
+
+            // Show/hide CTA container on larger screens
+            ctaContainer.classList.toggle('hidden', !isScrolled);
+            ctaContainer.classList.toggle('sm:flex', isScrolled); 
+
+            // Adjust justification
+            navFlexContainer.classList.toggle('justify-center', !isScrolled);
+            navFlexContainer.classList.toggle('justify-between', isScrolled);
+        };
+
+        window.addEventListener('scroll', handleScroll, { passive: true });
+        window.addEventListener('resize', handleScroll); // Re-check on resize
+    }
+
+    // --- VISUAL SUMMARY CHART ---
+    const ctx = document.getElementById('seoToolChart');
+    if (ctx) {
+        new Chart(ctx, {
+            type: 'radar',
+            data: {
+                labels: ['Features', 'Ease of Use', 'Value for Money', 'Support', 'Data Accuracy'],
+                datasets: [{
+                    label: 'SEMrush',
+                    data: [9, 6, 8, 9, 9],
+                    backgroundColor: 'rgba(255, 110, 0, 0.2)',
+                    borderColor: 'rgba(255, 110, 0, 1)',
+                    borderWidth: 2,
+                    pointBackgroundColor: 'rgba(255, 110, 0, 1)',
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: 'rgba(255, 110, 0, 1)'
+                }, {
+                    label: 'KWFinder (Mangools)',
+                    data: [7, 9, 9, 8, 8],
+                    backgroundColor: 'rgba(28, 178, 127, 0.2)',
+                    borderColor: 'rgba(28, 178, 127, 1)',
+                    borderWidth: 2,
+                    pointBackgroundColor: 'rgba(28, 178, 127, 1)',
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: 'rgba(28, 178, 127, 1)'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    r: {
+                        angleLines: {
+                            color: '#e5e7eb'
+                        },
+                        grid: {
+                            color: '#e5e7eb'
+                        },
+                        pointLabels: {
+                            font: {
+                                size: 14,
+                                weight: 'bold'
+                            },
+                            color: '#374151'
+                        },
+                        ticks: {
+                            backdropColor: 'transparent',
+                            stepSize: 2
+                        },
+                         min: 0,
+                         max: 10
+                    }
+                },
+                plugins: {
+                    legend: {
+                        position: 'top',
+                         labels: {
+                            font: {
+                                size: 14
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    }
+
+    // --- FEATURE COVERAGE DOUGHNUT CHART ---
+    const featureCtx = document.getElementById('featureDoughnutChart');
+    if (featureCtx) {
+        new Chart(featureCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['SEMrush Feature Coverage', 'KWFinder Feature Coverage'],
+                datasets: [{
+                    label: 'Feature Coverage of 35 Key Areas',
+                    data: [33, 15], // SEMrush has ~33/35, KWFinder has ~15/35
+                    backgroundColor: [
+                        'rgba(255, 110, 0, 0.7)',
+                        'rgba(28, 178, 127, 0.7)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 110, 0, 1)',
+                        'rgba(28, 178, 127, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                let label = context.label || '';
+                                if (label) {
+                                    label += ': ';
+                                }
+                                if (context.parsed !== null) {
+                                    label += `${((context.parsed / 35) * 100).toFixed(0)}% (${context.parsed} of 35 features)`;
+                                }
+                                return label;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    }
+
+    // --- PRICING BAR CHART ---
+    const pricingCtx = document.getElementById('pricingBarChart');
+    if (pricingCtx) {
+        new Chart(pricingCtx, {
+            type: 'bar',
+            data: {
+                labels: ['SEMrush Base Plan', 'KWFinder Base Plan'],
+                datasets: [
+                    {
+                        label: 'Starting Price ($/mo)',
+                        data: [119, 49],
+                        backgroundColor: 'rgba(227, 64, 55, 0.7)',
+                        borderColor: 'rgba(227, 64, 55, 1)',
+                        borderWidth: 1,
+                        yAxisID: 'y-price',
+                    },
+                    {
+                        label: 'Keywords Tracked',
+                        data: [500, 200],
+                        backgroundColor: 'rgba(59, 130, 246, 0.7)',
+                        borderColor: 'rgba(59, 130, 246, 1)',
+                        borderWidth: 1,
+                        yAxisID: 'y-keywords',
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                 plugins: {
+                    legend: {
+                        display: true,
+                        position: 'top'
+                    }
+                },
+                scales: {
+                    'y-price': {
+                        type: 'linear',
+                        display: true,
+                        position: 'left',
+                        title: {
+                            display: true,
+                            text: 'Price ($/mo)'
+                        }
+                    },
+                    'y-keywords': {
+                        type: 'linear',
+                        display: true,
+                        position: 'right',
+                        title: {
+                            display: true,
+                            text: 'Keywords Tracked'
+                        },
+                        grid: {
+                            drawOnChartArea: false, // only draw grid lines for the first Y axis
+                        },
+                    }
+                }
+            }
+        });
+    }
+    
+    // --- USER PROFILE BAR CHART ---
+    const userProfileCtx = document.getElementById('userProfileChart');
+    if (userProfileCtx) {
+        new Chart(userProfileCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Bloggers', 'Freelancers/SMBs', 'Agencies'],
+                datasets: [
+                    {
+                        label: 'KWFinder Suitability',
+                        data: [90, 70, 20],
+                        backgroundColor: 'rgba(28, 178, 127, 0.7)',
+                        borderColor: 'rgba(28, 178, 127, 1)',
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'SEMrush Suitability',
+                        data: [40, 80, 100],
+                        backgroundColor: 'rgba(255, 110, 0, 0.7)',
+                        borderColor: 'rgba(255, 110, 0, 1)',
+                        borderWidth: 1
+                    }
+                ]
+            },
+            options: {
+                indexAxis: 'y',
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return `${context.dataset.label}: ${context.raw}%`;
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Suitability Score (%)'
+                        }
+                    }
+                }
+            }
+        });
+    }
+
+
+    // --- INTERACTIVE QUIZ LOGIC ---
+    const quizContainer = document.getElementById('quiz-container');
+    if (quizContainer) {
+        const questions = quizContainer.querySelectorAll('.quiz-question');
+        const resultContainer = document.getElementById('quiz-result');
+        const recommendationName = document.getElementById('tool-recommendation-name');
+        const recommendationText = document.getElementById('tool-recommendation-text');
+        const recommendationPlan = document.getElementById('tool-recommendation-plan');
+        const recommendationFeature = document.getElementById('tool-recommendation-feature');
+        const recommendationLink = document.getElementById('tool-recommendation-link');
+        const answers = {};
+
+        quizContainer.addEventListener('click', (e) => {
+            if (e.target.classList.contains('quiz-option')) {
+                const questionDiv = e.target.closest('.quiz-question');
+                if (!questionDiv) return;
+
+                const questionId = questionDiv.id;
+                const answerValue = e.target.dataset.value;
+
+                answers[questionId] = answerValue;
+                
+                questionDiv.querySelectorAll('.quiz-option').forEach(opt => opt.classList.remove('selected'));
+                e.target.classList.add('selected');
+
+                const currentQuestionIndex = Array.from(questions).indexOf(questionDiv);
+
+                if (currentQuestionIndex < questions.length - 1) {
+                    setTimeout(() => {
+                        questionDiv.classList.add('hidden');
+                        questions[currentQuestionIndex + 1].classList.remove('hidden');
+                    }, 300);
+                } else {
+                    setTimeout(showResult, 300);
+                }
+            }
+        });
+
+        function showResult() {
+            questions.forEach(q => q.classList.add('hidden'));
+            
+            let semrushPoints = 0;
+            let mangoolsPoints = 0;
+
+            if (answers.question1 === 'pro' || answers.question1 === 'agency') semrushPoints += 2;
+            if (answers.question1 === 'beginner') mangoolsPoints += 2;
+
+            if (answers.question2 === 'high') semrushPoints += 2;
+            if (answers.question2 === 'low') mangoolsPoints += 2;
+
+            if (answers.question3 === 'agency') semrushPoints += 2;
+            if (answers.question3 === 'blogger' || answers.question3 === 'freelancer') mangoolsPoints += 1;
+            
+            if (answers.question4 === 'audits' || answers.question4 === 'reporting') semrushPoints += 2;
+            if (answers.question4 === 'keywords') mangoolsPoints += 2;
+
+            if (answers.question5 === 'critical') semrushPoints += 2;
+            if (answers.question5 === 'not_important') mangoolsPoints += 2;
+
+            const recommendation = semrushPoints > mangoolsPoints ? 'SEMrush' : 'KWFinder (Mangools)';
+
+            let details = {};
+
+            if (recommendation === 'SEMrush') {
+                details = {
+                    name: 'SEMrush',
+                    text: "Based on your need for advanced features and comprehensive data, SEMrush is the ideal all-in-one platform to scale your SEO efforts.",
+                    plan: "Guru Plan",
+                    feature: "Automated client reporting and in-depth site audits.",
+                    link: "https://semrush.com/pricing", 
+                    ctaClass: "cta-semrush"
+                };
+                if (answers.question3 === 'freelancer' && answers.question2 !== 'high') {
+                    details.plan = "Pro Plan";
+                    details.feature = "Comprehensive competitor analysis tools.";
+                }
+            } else { // KWFinder (Mangools)
+                details = {
+                    name: 'KWFinder (Mangools)',
+                    text: "For your focus on core SEO tasks with an emphasis on usability and budget, the Mangools suite is the perfect fit.",
+                    plan: "Premium Plan",
+                    feature: "Excellent keyword research with a user-friendly interface.",
+                    link: "https://mangools.com#a5ebaddebfeebf80fc747e102",
+                    ctaClass: "cta-mangools"
+                };
+                if (answers.question1 === 'beginner' && answers.question2 === 'low') {
+                    details.plan = "Basic Plan";
+                    details.feature = "Finding low-competition keywords quickly.";
+                }
+            }
+            
+            if (resultContainer && recommendationName && recommendationText && recommendationPlan && recommendationFeature && recommendationLink) {
+                recommendationName.textContent = details.name;
+                recommendationText.textContent = details.text;
+                recommendationPlan.textContent = details.plan;
+                recommendationFeature.textContent = details.feature;
+                recommendationLink.href = details.link;
+                recommendationLink.className = `cta-button mt-4 ${details.ctaClass}`; // Reset and apply classes
+                
+                resultContainer.classList.remove('hidden');
+            }
+        }
+    }
+
+    // --- IMAGE POPUP LOGIC ---
+    const popup = document.getElementById('image-popup');
+    const popupImg = document.getElementById('popup-img');
+    const closeBtn = document.querySelector('.close-popup');
+    const imagesToPopup = document.querySelectorAll('.workflow-image, .highlight-image');
+
+    if (popup && popupImg && closeBtn && imagesToPopup.length > 0) {
+        imagesToPopup.forEach(image => {
+            image.addEventListener('click', () => {
+                popup.classList.remove('hidden');
+                popupImg.src = image.src;
+                popupImg.alt = image.alt; // Copy alt text for accessibility
+            });
+        });
+
+        const closePopup = () => {
+            popup.classList.add('hidden');
+        };
+
+        closeBtn.addEventListener('click', closePopup);
+        
+        popup.addEventListener('click', (e) => {
+            if (e.target === popup) {
+                closePopup();
+            }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && !popup.classList.contains('hidden')) {
+                closePopup();
+            }
+        });
+    }
+
+    // --- BACK TO TOP BUTTON LOGIC ---
+    const backToTopButton = document.getElementById('back-to-top');
+    if (backToTopButton) {
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTopButton.classList.add('show');
+            } else {
+                backToTopButton.classList.remove('show');
+            }
+        });
+
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    }
+});
