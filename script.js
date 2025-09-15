@@ -8,10 +8,9 @@ document.addEventListener('DOMContentLoaded', () => {
         dateElement.textContent = `Last Updated: ${displayFormatter.format(pastDate)}`;
     }
 
-    // --- STICKY HEADER CTA & SOCIAL SHARE LOGIC ---
+    // --- STICKY HEADER CTA LOGIC ---
     const header = document.getElementById('main-header');
     const ctaContainer = document.getElementById('sticky-cta-container');
-    const socialShareContainer = document.getElementById('sticky-social-share');
     const navFlexContainer = header ? header.querySelector('.flex') : null;
     const scrollThreshold = 100; // Pixels to scroll before CTAs appear
 
@@ -19,7 +18,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const handleScroll = () => {
             const isScrolled = window.scrollY > scrollThreshold;
             const isMobile = window.innerWidth < 640;
-            const isDesktop = window.innerWidth >= 768;
             
             // On mobile, we don't show the CTA to save space
             if (isMobile) {
@@ -34,11 +32,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Adjust justification
                 navFlexContainer.classList.toggle('justify-center', !isScrolled);
                 navFlexContainer.classList.toggle('justify-between', isScrolled);
-            }
-
-            // Show/hide social share container on desktop only
-            if (socialShareContainer && isDesktop) {
-                socialShareContainer.classList.toggle('show', isScrolled);
             }
         };
 
