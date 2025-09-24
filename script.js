@@ -8,36 +8,47 @@ document.addEventListener('DOMContentLoaded', () => {
         dateElement.textContent = `Last Updated: ${displayFormatter.format(pastDate)}`;
     }
 
+    // Debounce function to limit how often a function is called
+    function debounce(func, wait) {
+        let timeout;
+        return function(...args) {
+            const context = this;
+            clearTimeout(timeout);
+            timeout = setTimeout(() => func.apply(context, args), wait);
+        };
+    }
+
     // --- STICKY HEADER CTA LOGIC ---
     const header = document.getElementById('main-header');
     const ctaContainer = document.getElementById('sticky-cta-container');
     const navFlexContainer = header ? header.querySelector('.flex') : null;
     const scrollThreshold = 100; // Pixels to scroll before CTAs appear
 
-    if (header && ctaContainer && navFlexContainer) {
-        const handleScroll = () => {
-            const isScrolled = window.scrollY > scrollThreshold;
-            const isMobile = window.innerWidth < 640;
-            
-            // On mobile, we don't show the CTA to save space
-            if (isMobile) {
-                ctaContainer.classList.add('hidden');
-                navFlexContainer.classList.add('justify-center');
-                navFlexContainer.classList.remove('justify-between');
-            } else {
-                // Show/hide CTA container on larger screens
-                ctaContainer.classList.toggle('hidden', !isScrolled);
-                ctaContainer.classList.toggle('sm:flex', isScrolled); 
+    const handleScrollAndResize = () => {
+        if (!header || !ctaContainer || !navFlexContainer) return;
+        
+        const isScrolled = window.scrollY > scrollThreshold;
+        const isMobile = window.innerWidth < 640;
+        
+        // On mobile, we don't show the CTA to save space
+        if (isMobile) {
+            ctaContainer.classList.add('hidden');
+            navFlexContainer.classList.add('justify-center');
+            navFlexContainer.classList.remove('justify-between');
+        } else {
+            // Show/hide CTA container on larger screens
+            ctaContainer.classList.toggle('hidden', !isScrolled);
+            ctaContainer.classList.toggle('sm:flex', isScrolled); 
 
-                // Adjust justification
-                navFlexContainer.classList.toggle('justify-center', !isScrolled);
-                navFlexContainer.classList.toggle('justify-between', isScrolled);
-            }
-        };
+            // Adjust justification
+            navFlexContainer.classList.toggle('justify-center', !isScrolled);
+            navFlexContainer.classList.toggle('justify-between', isScrolled);
+        }
+    };
 
-        window.addEventListener('scroll', handleScroll, { passive: true });
-        window.addEventListener('resize', handleScroll); // Re-check on resize
-    }
+    window.addEventListener('scroll', debounce(handleScrollAndResize, 50));
+    window.addEventListener('resize', debounce(handleScrollAndResize, 50));
+    handleScrollAndResize(); // Initial check on page load
 
     // --- VISUAL SUMMARY CHART ---
     const ctx = document.getElementById('seoToolChart');
@@ -314,18 +325,17 @@ document.addEventListener('DOMContentLoaded', () => {
             let semrushPoints = 0;
             let mangoolsPoints = 0;
 
-            if (answers.question1 === 'pro' || answers.question1 === 'agency') semrushPoints += 2;
-            if (answers.question1 === 'beginner') mangoolsPoints += 2;
+            if (answers.question1 === 'pro' || answers.question3 === 'agency') semrushPoints += 2;
+            if (answers.question1 === 'beginner' || answers.question3 === 'blogger') mangoolsPoints += 2;
+            if (answers.question1 === 'intermediate' || answers.question3 === 'freelancer') { semrushPoints++; mangoolsPoints++; }
 
             if (answers.question2 === 'high') semrushPoints += 2;
             if (answers.question2 === 'low') mangoolsPoints += 2;
-
-            if (answers.question3 === 'agency') semrushPoints += 2;
-            if (answers.question3 === 'blogger' || answers.question3 === 'freelancer') mangoolsPoints += 1;
+            if (answers.question2 === 'medium') { semrushPoints++; mangoolsPoints++; }
             
             if (answers.question4 === 'audits' || answers.question4 === 'reporting') semrushPoints += 2;
             if (answers.question4 === 'keywords') mangoolsPoints += 2;
-
+            
             if (answers.question5 === 'critical') semrushPoints += 2;
             if (answers.question5 === 'not_important') mangoolsPoints += 2;
 
@@ -411,13 +421,15 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- BACK TO TOP BUTTON LOGIC ---
     const backToTopButton = document.getElementById('back-to-top');
     if (backToTopButton) {
-        window.addEventListener('scroll', () => {
+        const handleScroll = () => {
             if (window.scrollY > 300) {
                 backToTopButton.classList.add('show');
             } else {
                 backToTopButton.classList.remove('show');
             }
-        });
+        };
+
+        window.addEventListener('scroll', debounce(handleScroll, 50));
 
         backToTopButton.addEventListener('click', () => {
             window.scrollTo({
