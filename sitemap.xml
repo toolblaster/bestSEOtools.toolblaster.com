@@ -1,21 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <!--
 This XML sitemap lists the important URLs for a website.
 It helps search engines like Google discover and understand your site structure.
 -->
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+<urlset xmlns="[suspicious link removed]">
 
 <!-- URL entry for the main landing page -->
+
 <url>
-    <!-- The full URL of the page -->
-    <loc>https://semrushvskwfinder.toolblaster.com/</loc>
+<!-- The full URL of the page -->
+<loc>https://bestseotools.toolblaster.com/</loc>
 
-    <!-- The date the file was last modified (YYYY-MM-DD format) -->
-    <lastmod>2025-09-15</lastmod>
+<!-- The date the file was last modified (YYYY-MM-DD format) -->
+<lastmod>2025-09-25</lastmod>
 
-    <!-- The priority of this URL relative to other URLs on your site (from 0.0 to 1.0) -->
-    <!-- Since this is the only page, it gets the highest priority. -->
-    <priority>1.0</priority>
+<!-- The priority of this URL relative to other URLs on your site (from 0.0 to 1.0) -->
+<!-- Since this is the only page, it gets the highest priority. -->
+<priority>1.0</priority>
+
 </url>
 
 </urlset>
