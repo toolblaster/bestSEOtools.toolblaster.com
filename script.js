@@ -369,3 +369,32 @@ document.addEventListener('DOMContentLoaded', () => {
         document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !popup.classList.contains('hidden')) closePopup(); });
     }
 });
+
+// --- SOCIAL SHARING LOGIC ---
+const shareOnTwitter = document.getElementById('share-twitter');
+const shareOnFacebook = document.getElementById('share-facebook');
+const shareOnLinkedIn = document.getElementById('share-linkedin');
+
+if (shareOnTwitter && shareOnFacebook && shareOnLinkedIn) {
+    const pageUrl = encodeURIComponent(window.location.href);
+    const pageTitle = encodeURIComponent(document.title);
+
+    const shareUrls = {
+        twitter: `https://twitter.com/intent/tweet?url=${pageUrl}&text=${pageTitle}`,
+        facebook: `https://www.facebook.com/sharer/sharer.php?u=${pageUrl}`,
+        linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${pageUrl}`
+    };
+
+    shareOnTwitter.href = shareUrls.twitter;
+    shareOnFacebook.href = shareUrls.facebook;
+    shareOnLinkedIn.href = shareUrls.linkedin;
+
+    document.querySelectorAll('.share-button').forEach(button => {
+        button.addEventListener('click', function(e) {
+            e.preventDefault();
+            const url = this.href;
+            const windowOptions = 'width=600,height=400,scrollbars=yes,resizable=yes';
+            window.open(url, 'Share', windowOptions);
+        });
+    });
+}
