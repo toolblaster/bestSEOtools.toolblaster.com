@@ -1,13 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // --- DYNAMIC DATE LOGIC ---
-    const dateElement = document.getElementById('last-updated-date');
-    if (dateElement) {
-        const today = new Date();
-        const pastDate = new Date(today.setDate(today.getDate() - 5)); // Set to a consistent 5 days ago
-        const displayFormatter = new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
-        dateElement.textContent = `Last Updated: ${displayFormatter.format(pastDate)}`;
-    }
-
     // Debounce function to limit how often a function is called
     function debounce(func, wait) {
         let timeout;
@@ -18,37 +9,77 @@ document.addEventListener('DOMContentLoaded', () => {
         };
     }
 
+    // --- DYNAMIC DATE LOGIC ---
+    const dateElement = document.getElementById('last-updated-date');
+    if (dateElement) {
+        const today = new Date();
+        const pastDate = new Date(today.setDate(today.getDate() - 5)); // Set to a consistent 5 days ago
+        const displayFormatter = new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'long' });
+        dateElement.textContent = `Last Updated: ${displayFormatter.format(pastDate)}`;
+    }
+
+    // --- SCROLL-BASED FUNCTIONALITY (PROGRESS BAR & BACK-TO-TOP) ---
+    const progressBar = document.getElementById('progress-bar');
+    const backToTopButton = document.getElementById('back-to-top');
+    
+    const handlePageScroll = () => {
+        // Reading progress bar
+        if (progressBar) {
+            const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const progress = (window.scrollY / totalHeight) * 100;
+            progressBar.style.width = `${progress}%`;
+        }
+        // Back to top button visibility
+        if (backToTopButton) {
+            if (window.scrollY > 300) {
+                backToTopButton.classList.add('show');
+            } else {
+                backToTopButton.classList.remove('show');
+            }
+        }
+    };
+    
+    // Back to top button click event
+    if (backToTopButton) {
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    }
+
     // --- STICKY HEADER CTA LOGIC ---
     const header = document.getElementById('main-header');
     const ctaContainer = document.getElementById('sticky-cta-container');
     const navFlexContainer = header ? header.querySelector('.flex') : null;
     const scrollThreshold = 100; // Pixels to scroll before CTAs appear
 
-    const handleScrollAndResize = () => {
+    const handleScrollAndResizeForHeader = () => {
         if (!header || !ctaContainer || !navFlexContainer) return;
         
         const isScrolled = window.scrollY > scrollThreshold;
         const isMobile = window.innerWidth < 640;
         
-        // On mobile, we don't show the CTA to save space
         if (isMobile) {
             ctaContainer.classList.add('hidden');
             navFlexContainer.classList.add('justify-center');
             navFlexContainer.classList.remove('justify-between');
         } else {
-            // Show/hide CTA container on larger screens
             ctaContainer.classList.toggle('hidden', !isScrolled);
             ctaContainer.classList.toggle('sm:flex', isScrolled); 
-
-            // Adjust justification
             navFlexContainer.classList.toggle('justify-center', !isScrolled);
             navFlexContainer.classList.toggle('justify-between', isScrolled);
         }
     };
 
-    window.addEventListener('scroll', debounce(handleScrollAndResize, 50));
-    window.addEventListener('resize', debounce(handleScrollAndResize, 50));
-    handleScrollAndResize(); // Initial check on page load
+    // --- COMBINED EVENT LISTENERS ---
+    window.addEventListener('scroll', debounce(() => {
+        handlePageScroll();
+        handleScrollAndResizeForHeader();
+    }, 15));
+    window.addEventListener('resize', debounce(handleScrollAndResizeForHeader, 50));
+    
+    // --- INITIAL CHECKS ON PAGE LOAD ---
+    handlePageScroll();
+    handleScrollAndResizeForHeader();
 
     // --- VISUAL SUMMARY CHART ---
     const ctx = document.getElementById('seoToolChart');
@@ -84,36 +115,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 maintainAspectRatio: false,
                 scales: {
                     r: {
-                        angleLines: {
-                            color: '#e5e7eb'
-                        },
-                        grid: {
-                            color: '#e5e7eb'
-                        },
-                        pointLabels: {
-                            font: {
-                                size: 14,
-                                weight: 'bold'
-                            },
-                            color: '#374151'
-                        },
-                        ticks: {
-                            backdropColor: 'transparent',
-                            stepSize: 2
-                        },
-                         min: 0,
-                         max: 10
+                        angleLines: { color: '#e5e7eb' },
+                        grid: { color: '#e5e7eb' },
+                        pointLabels: { font: { size: 14, weight: 'bold' }, color: '#374151' },
+                        ticks: { backdropColor: 'transparent', stepSize: 2 },
+                        min: 0,
+                        max: 10
                     }
                 },
                 plugins: {
-                    legend: {
-                        position: 'top',
-                         labels: {
-                            font: {
-                                size: 14
-                            }
-                        }
-                    }
+                    legend: { position: 'top', labels: { font: { size: 14 } } }
                 }
             }
         });
@@ -128,15 +139,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 labels: ['SEMrush Feature Coverage', 'KWFinder Feature Coverage'],
                 datasets: [{
                     label: 'Feature Coverage of 35 Key Areas',
-                    data: [33, 15], // SEMrush has ~33/35, KWFinder has ~15/35
-                    backgroundColor: [
-                        'rgba(255, 110, 0, 0.7)',
-                        'rgba(28, 178, 127, 0.7)'
-                    ],
-                    borderColor: [
-                        'rgba(255, 110, 0, 1)',
-                        'rgba(28, 178, 127, 1)'
-                    ],
+                    data: [33, 15],
+                    backgroundColor: ['rgba(255, 110, 0, 0.7)', 'rgba(28, 178, 127, 0.7)'],
+                    borderColor: ['rgba(255, 110, 0, 1)', 'rgba(28, 178, 127, 1)'],
                     borderWidth: 1
                 }]
             },
@@ -144,16 +149,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 responsive: true,
                 maintainAspectRatio: false,
                 plugins: {
-                    legend: {
-                        position: 'top',
-                    },
+                    legend: { position: 'top' },
                     tooltip: {
                         callbacks: {
                             label: function(context) {
                                 let label = context.label || '';
-                                if (label) {
-                                    label += ': ';
-                                }
+                                if (label) { label += ': '; }
                                 if (context.parsed !== null) {
                                     label += `${((context.parsed / 35) * 100).toFixed(0)}% (${context.parsed} of 35 features)`;
                                 }
@@ -195,33 +196,20 @@ document.addEventListener('DOMContentLoaded', () => {
             options: {
                 responsive: true,
                 maintainAspectRatio: false,
-                 plugins: {
-                    legend: {
-                        display: true,
-                        position: 'top'
-                    }
-                },
+                 plugins: { legend: { display: true, position: 'top' } },
                 scales: {
                     'y-price': {
                         type: 'linear',
                         display: true,
                         position: 'left',
-                        title: {
-                            display: true,
-                            text: 'Price ($/mo)'
-                        }
+                        title: { display: true, text: 'Price ($/mo)' }
                     },
                     'y-keywords': {
                         type: 'linear',
                         display: true,
                         position: 'right',
-                        title: {
-                            display: true,
-                            text: 'Keywords Tracked'
-                        },
-                        grid: {
-                            drawOnChartArea: false, // only draw grid lines for the first Y axis
-                        },
+                        title: { display: true, text: 'Keywords Tracked' },
+                        grid: { drawOnChartArea: false },
                     }
                 }
             }
@@ -257,36 +245,20 @@ document.addEventListener('DOMContentLoaded', () => {
                 responsive: true,
                 maintainAspectRatio: false,
                 plugins: {
-                    legend: {
-                        position: 'top',
-                    },
-                    tooltip: {
-                        callbacks: {
-                            label: function(context) {
-                                return `${context.dataset.label}: ${context.raw}%`;
-                            }
-                        }
-                    }
+                    legend: { position: 'top' },
+                    tooltip: { callbacks: { label: (context) => `${context.dataset.label}: ${context.raw}%` } }
                 },
-                scales: {
-                    x: {
-                        title: {
-                            display: true,
-                            text: 'Suitability Score (%)'
-                        }
-                    }
-                }
+                scales: { x: { title: { display: true, text: 'Suitability Score (%)' } } }
             }
         });
     }
-
 
     // --- INTERACTIVE QUIZ LOGIC ---
     const quizContainer = document.getElementById('quiz-container');
     if (quizContainer) {
         const questions = quizContainer.querySelectorAll('.quiz-question');
         const resultContainer = document.getElementById('quiz-result');
-        const recommendationName = document.getElementById('tool-recommendation-name');
+        const recommendationHeading = document.getElementById('tool-recommendation-heading');
         const recommendationText = document.getElementById('tool-recommendation-text');
         const recommendationPlan = document.getElementById('tool-recommendation-plan');
         const recommendationFeature = document.getElementById('tool-recommendation-feature');
@@ -300,7 +272,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 const questionId = questionDiv.id;
                 const answerValue = e.target.dataset.value;
-
                 answers[questionId] = answerValue;
                 
                 questionDiv.querySelectorAll('.quiz-option').forEach(opt => opt.classList.remove('selected'));
@@ -321,26 +292,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
         function showResult() {
             questions.forEach(q => q.classList.add('hidden'));
-            
-            let semrushPoints = 0;
-            let mangoolsPoints = 0;
+            let semrushPoints = 0, mangoolsPoints = 0;
 
             if (answers.question1 === 'pro' || answers.question3 === 'agency') semrushPoints += 2;
             if (answers.question1 === 'beginner' || answers.question3 === 'blogger') mangoolsPoints += 2;
             if (answers.question1 === 'intermediate' || answers.question3 === 'freelancer') { semrushPoints++; mangoolsPoints++; }
-
             if (answers.question2 === 'high') semrushPoints += 2;
             if (answers.question2 === 'low') mangoolsPoints += 2;
             if (answers.question2 === 'medium') { semrushPoints++; mangoolsPoints++; }
-            
             if (answers.question4 === 'audits' || answers.question4 === 'reporting') semrushPoints += 2;
             if (answers.question4 === 'keywords') mangoolsPoints += 2;
-            
             if (answers.question5 === 'critical') semrushPoints += 2;
             if (answers.question5 === 'not_important') mangoolsPoints += 2;
 
             const recommendation = semrushPoints > mangoolsPoints ? 'SEMrush' : 'KWFinder (Mangools)';
-
             let details = {};
 
             if (recommendation === 'SEMrush') {
@@ -356,7 +321,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     details.plan = "Pro Plan";
                     details.feature = "Comprehensive competitor analysis tools.";
                 }
-            } else { // KWFinder (Mangools)
+            } else {
                 details = {
                     name: 'KWFinder (Mangools)',
                     text: "For your focus on core SEO tasks with an emphasis on usability and budget, the Mangools suite is the perfect fit.",
@@ -371,14 +336,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
             
-            if (resultContainer && recommendationName && recommendationText && recommendationPlan && recommendationFeature && recommendationLink) {
-                recommendationName.textContent = details.name;
+            if (resultContainer && recommendationHeading && recommendationText && recommendationPlan && recommendationFeature && recommendationLink) {
+                recommendationHeading.textContent = `Your Recommendation: ${details.name}`;
                 recommendationText.textContent = details.text;
                 recommendationPlan.textContent = details.plan;
                 recommendationFeature.textContent = details.feature;
                 recommendationLink.href = details.link;
-                recommendationLink.className = `cta-button mt-4 ${details.ctaClass}`; // Reset and apply classes
-                
+                recommendationLink.className = `cta-button mt-4 ${details.ctaClass}`;
                 resultContainer.classList.remove('hidden');
             }
         }
@@ -395,47 +359,13 @@ document.addEventListener('DOMContentLoaded', () => {
             image.addEventListener('click', () => {
                 popup.classList.remove('hidden');
                 popupImg.src = image.src;
-                popupImg.alt = image.alt; // Copy alt text for accessibility
+                popupImg.alt = image.alt;
             });
         });
 
-        const closePopup = () => {
-            popup.classList.add('hidden');
-        };
-
+        const closePopup = () => popup.classList.add('hidden');
         closeBtn.addEventListener('click', closePopup);
-        
-        popup.addEventListener('click', (e) => {
-            if (e.target === popup) {
-                closePopup();
-            }
-        });
-
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && !popup.classList.contains('hidden')) {
-                closePopup();
-            }
-        });
-    }
-
-    // --- BACK TO TOP BUTTON LOGIC ---
-    const backToTopButton = document.getElementById('back-to-top');
-    if (backToTopButton) {
-        const handleScroll = () => {
-            if (window.scrollY > 300) {
-                backToTopButton.classList.add('show');
-            } else {
-                backToTopButton.classList.remove('show');
-            }
-        };
-
-        window.addEventListener('scroll', debounce(handleScroll, 50));
-
-        backToTopButton.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
+        popup.addEventListener('click', (e) => { if (e.target === popup) closePopup(); });
+        document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !popup.classList.contains('hidden')) closePopup(); });
     }
 });
