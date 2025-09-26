@@ -585,7 +585,7 @@ footer .text-gray-500 {
 .share-button.facebook { background-color: #1877F2; }
 .share-button.facebook:hover { background-color: #166fe5; }
 
-.share-button.whatsapp { background-color: #25D366; }
+.share-button.whatsapp { background-color: #25D366 !important; } /* Added !important */
 .share-button.whatsapp:hover { background-color: #128C7E; }
 
 /* --- Media Queries for Responsive Design (Mobile-First) --- */
