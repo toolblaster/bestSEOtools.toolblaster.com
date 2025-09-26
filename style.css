@@ -569,6 +569,7 @@ footer .text-gray-500 {
     max-width: 250px; /* Max width on mobile */
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     border: none;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.4); /* Added for better text contrast */
 }
 
 
