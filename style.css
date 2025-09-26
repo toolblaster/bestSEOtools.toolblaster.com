@@ -538,11 +538,11 @@ footer .text-gray-500 {
 }
 
 #share-section h2 {
-    font-size: 0.5rem;
+    font-size: 0.4rem;
     margin-bottom: 0.1rem;
 }
 #share-section p {
-    font-size: 0.45rem;
+    font-size: 0.35rem;
     margin-bottom: 0.5rem;
 }
 
@@ -617,8 +617,8 @@ footer .text-gray-500 {
     .share-button {
         width: auto; /* Auto width on larger screens */
     }
-    #share-section h2 { font-size: 1.5rem; }
-    #share-section p { font-size: 1rem; }
+    #share-section h2 { font-size: 1.25rem; }
+    #share-section p { font-size: 0.875rem; }
 }
 
 /* Desktop Styles */
