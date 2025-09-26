@@ -305,6 +305,19 @@ document.addEventListener('DOMContentLoaded', () => {
             if (answers.question5 === 'critical') semrushPoints += 2;
             if (answers.question5 === 'not_important') mangoolsPoints += 2;
 
+            // New question scoring
+            if (answers.question6 === 'comprehensive') semrushPoints += 2;
+            if (answers.question6 === 'basic') mangoolsPoints++;
+            if (answers.question6 === 'detailed') { semrushPoints++; mangoolsPoints++; }
+            
+            if (answers.question7 === 'strategy') semrushPoints += 2;
+            if (answers.question7 === 'blogging') mangoolsPoints += 2;
+            if (answers.question7 === 'optimization') { semrushPoints++; mangoolsPoints++; }
+
+            if (answers.question8 === 'critical-health') semrushPoints += 2;
+            if (answers.question8 === 'low-priority') mangoolsPoints += 2;
+            if (answers.question8 === 'basics') { semrushPoints++; mangoolsPoints++; }
+
             const recommendation = semrushPoints > mangoolsPoints ? 'SEMrush' : 'KWFinder (Mangools)';
             let details = {};
 
