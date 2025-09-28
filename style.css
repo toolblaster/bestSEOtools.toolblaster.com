@@ -1,18 +1,18 @@
 :root {
     --bg-color: #f9fafb;
-    --text-color: #1f2937; /* Darkened for better contrast */
-    --text-color-muted: #374151; /* Darkened for better contrast */
-    --accent-color: #E34037;
-    --accent-color-dark: #C22D2D;
+    --text-color: #111827; /* Darker text for max contrast */
+    --text-color-muted: #374151;
+    --accent-color: #D1352B; /* Darkened red for better contrast with white text */
+    --accent-color-dark: #B91C1C; /* Darkened hover state */
     --card-bg: #ffffff;
-    --card-border: #eee;
+    --card-border: #e5e7eb;
     --header-bg: #ffffff;
-    --footer-bg: #121212; /* Primary Black */
-    --footer-text: #e5e7eb; /* Brighter for better contrast */
+    --footer-bg: #121212;
+    --footer-text: #e5e7eb;
     --link-hover-bg: #fef2f2;
     --section-bg-alt: #f9fafb;
-    --semrush-color: #D65A00; /* Darker orange for better contrast */
-    --mangools-color: #157A66; /* Darker green for better contrast */
+    --semrush-color: #B94900; /* Darkened for AA contrast */
+    --mangools-color: #157A66;
 }
 html, body {
     font-family: 'Inter', sans-serif;
@@ -99,7 +99,7 @@ main {
     background-color: var(--semrush-color);
     color: white !important;
 }
-.cta-semrush:hover { background-color: #B34C00; } 
+.cta-semrush:hover { background-color: #A34000; } 
 .cta-mangools {
     background-color: var(--mangools-color);
     color: white !important;
@@ -354,6 +354,48 @@ main {
     box-shadow: 0 8px 15px rgba(0,0,0,0.1);
 }
 
+/* Chart Loader Styles */
+.chart-loader {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(249, 250, 251, 0.8);
+    z-index: 10;
+    transition: opacity 0.4s ease-in-out;
+    border-radius: 0.75rem;
+}
+
+.spinner {
+    border: 4px solid #e5e7eb; /* Light grey */
+    border-top: 4px solid var(--accent-color); /* Red */
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+    margin-bottom: 1rem;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.chart-loader p {
+    font-weight: 500;
+    color: var(--text-color-muted);
+}
+
+.chart-loader.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
 /* Image Popup Styles */
 .image-popup-overlay {
     position: fixed;
@@ -531,45 +573,44 @@ footer .text-gray-500 {
 
 /* --- Share Section Styles --- */
 #share-section {
-    padding-top: 0.75rem;
-    padding-bottom: 0.75rem;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
     background-color: var(--section-bg-alt);
     margin-top: 1rem;
 }
 
 #share-section h2 {
-    font-size: 0.4rem;
-    margin-bottom: 0.1rem;
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
 }
 #share-section p {
-    font-size: 0.35rem;
-    margin-bottom: 0.5rem;
+    font-size: 0.875rem;
+    margin-bottom: 1rem;
 }
 
 .share-buttons {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 0.3rem;
-    margin-top: 0.3rem;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
 }
 
 .share-button {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 0.4rem 0.8rem;
+    padding: 0.5rem 1rem;
     border-radius: 0.375rem;
     text-decoration: none;
     font-weight: 600;
-    font-size: 0.8rem;
+    font-size: 0.875rem;
     color: white !important;
     transition: all 0.2s ease-in-out;
     width: 100%;
     max-width: 250px; /* Max width on mobile */
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     border: none;
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.4); /* Added for better text contrast */
 }
 
 
@@ -579,11 +620,11 @@ footer .text-gray-500 {
     height: 20px;
 }
 
-.share-button.twitter { background-color: #1DA1F2; }
-.share-button.twitter:hover { background-color: #0c85d0; }
+.share-button.twitter { background-color: #0F6AB2; } /* Darkened for AA contrast */
+.share-button.twitter:hover { background-color: #0C5691; }
 
-.share-button.facebook { background-color: #1877F2; }
-.share-button.facebook:hover { background-color: #166fe5; }
+.share-button.facebook { background-color: #1463D3; } /* Darkened for AA contrast */
+.share-button.facebook:hover { background-color: #1155B8; }
 
 .share-button.whatsapp { background-color: #25D366 !important; } /* Added !important */
 .share-button.whatsapp:hover { background-color: #128C7E; }
@@ -623,8 +664,6 @@ footer .text-gray-500 {
     .share-button {
         width: auto; /* Auto width on larger screens */
     }
-    #share-section h2 { font-size: 1.25rem; }
-    #share-section p { font-size: 0.875rem; }
 }
 
 /* Desktop Styles */
