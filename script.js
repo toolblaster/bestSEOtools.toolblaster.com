@@ -18,68 +18,78 @@ document.addEventListener('DOMContentLoaded', () => {
         dateElement.textContent = `Last Updated: ${displayFormatter.format(pastDate)}`;
     }
 
-    // --- SCROLL-BASED FUNCTIONALITY (PROGRESS BAR & BACK-TO-TOP) ---
+    // --- SCROLL & HEADER ELEMENTS AND LOGIC ---
     const progressBar = document.getElementById('progress-bar');
     const backToTopButton = document.getElementById('back-to-top');
-    
-    const handlePageScroll = () => {
-        // Reading progress bar
+    const header = document.getElementById('main-header');
+    const ctaContainer = document.getElementById('sticky-cta-container');
+    const navFlexContainer = header ? header.querySelector('.flex') : null;
+
+    let lastScrollY = window.scrollY;
+    const scrollThreshold = 100;
+
+    const handleScrollAndResize = () => {
+        const currentScrollY = window.scrollY;
+        const isMobile = window.innerWidth < 640;
+
+        // Progress bar
         if (progressBar) {
             const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
-            const progress = (window.scrollY / totalHeight) * 100;
+            const progress = (currentScrollY / totalHeight) * 100;
             progressBar.style.width = `${progress}%`;
         }
-        // Back to top button visibility
+
+        // Back-to-top button
         if (backToTopButton) {
-            if (window.scrollY > 300) {
-                backToTopButton.classList.add('show');
+            backToTopButton.classList.toggle('show', currentScrollY > 300);
+        }
+
+        // Header behavior
+        if (header) {
+            if (isMobile) {
+                // Mobile: Hide header on scroll down, show on scroll up
+                // We check if the user has scrolled more than the header's height
+                if (currentScrollY > lastScrollY && currentScrollY > header.offsetHeight) {
+                    header.classList.add('header-hidden');
+                } else {
+                    header.classList.remove('header-hidden');
+                }
+                // Ensure desktop-specific elements are hidden on mobile
+                if (ctaContainer) ctaContainer.classList.add('hidden');
+                if (navFlexContainer) {
+                    navFlexContainer.classList.add('justify-center');
+                    navFlexContainer.classList.remove('justify-between');
+                }
             } else {
-                backToTopButton.classList.remove('show');
+                // Desktop: Show/hide sticky CTAs and ensure header is always visible
+                header.classList.remove('header-hidden');
+                const isScrolled = currentScrollY > scrollThreshold;
+                if (ctaContainer) {
+                    ctaContainer.classList.toggle('hidden', !isScrolled);
+                    ctaContainer.classList.toggle('sm:flex', isScrolled);
+                }
+                if (navFlexContainer) {
+                    navFlexContainer.classList.toggle('justify-center', !isScrolled);
+                    navFlexContainer.classList.toggle('justify-between', isScrolled);
+                }
             }
         }
+        lastScrollY = currentScrollY <= 0 ? 0 : currentScrollY;
     };
-    
-    // Back to top button click event
+
     if (backToTopButton) {
         backToTopButton.addEventListener('click', () => {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
     }
 
-    // --- STICKY HEADER CTA LOGIC ---
-    const header = document.getElementById('main-header');
-    const ctaContainer = document.getElementById('sticky-cta-container');
-    const navFlexContainer = header ? header.querySelector('.flex') : null;
-    const scrollThreshold = 100; // Pixels to scroll before CTAs appear
+    // --- EVENT LISTENERS ---
+    window.addEventListener('scroll', debounce(handleScrollAndResize, 15));
+    window.addEventListener('resize', debounce(handleScrollAndResize, 50));
 
-    const handleScrollAndResizeForHeader = () => {
-        if (!header || !ctaContainer || !navFlexContainer) return;
-        
-        const isScrolled = window.scrollY > scrollThreshold;
-        const isMobile = window.innerWidth < 640;
-        
-        if (isMobile) {
-            ctaContainer.classList.add('hidden');
-            navFlexContainer.classList.add('justify-center');
-            navFlexContainer.classList.remove('justify-between');
-        } else {
-            ctaContainer.classList.toggle('hidden', !isScrolled);
-            ctaContainer.classList.toggle('sm:flex', isScrolled); 
-            navFlexContainer.classList.toggle('justify-center', !isScrolled);
-            navFlexContainer.classList.toggle('justify-between', isScrolled);
-        }
-    };
-
-    // --- COMBINED EVENT LISTENERS ---
-    window.addEventListener('scroll', debounce(() => {
-        handlePageScroll();
-        handleScrollAndResizeForHeader();
-    }, 15));
-    window.addEventListener('resize', debounce(handleScrollAndResizeForHeader, 50));
-    
     // --- INITIAL CHECKS ON PAGE LOAD ---
-    handlePageScroll();
-    handleScrollAndResizeForHeader();
+    handleScrollAndResize();
+
 
     // --- VISUAL SUMMARY CHART ---
     const ctx = document.getElementById('seoToolChart');
