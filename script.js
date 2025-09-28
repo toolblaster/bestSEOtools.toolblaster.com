@@ -386,21 +386,18 @@ document.addEventListener('DOMContentLoaded', () => {
 // --- SOCIAL SHARING LOGIC ---
 const shareOnTwitter = document.getElementById('share-twitter');
 const shareOnFacebook = document.getElementById('share-facebook');
-const shareOnWhatsapp = document.getElementById('share-whatsapp');
 
-if (shareOnTwitter && shareOnFacebook && shareOnWhatsapp) {
+if (shareOnTwitter && shareOnFacebook) {
     const pageUrl = encodeURIComponent(window.location.href);
     const pageTitle = encodeURIComponent(document.title);
 
     const shareUrls = {
         twitter: `https://twitter.com/intent/tweet?url=${pageUrl}&text=${pageTitle}`,
-        facebook: `https://www.facebook.com/sharer/sharer.php?u=${pageUrl}`,
-        whatsapp: `https://api.whatsapp.com/send?text=${pageTitle} ${pageUrl}`
+        facebook: `https://www.facebook.com/sharer/sharer.php?u=${pageUrl}`
     };
 
     shareOnTwitter.href = shareUrls.twitter;
     shareOnFacebook.href = shareUrls.facebook;
-    shareOnWhatsapp.href = shareUrls.whatsapp;
 
     document.querySelectorAll('.share-button').forEach(button => {
         button.addEventListener('click', function(e) {
