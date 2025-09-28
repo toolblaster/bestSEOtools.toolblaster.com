@@ -29,6 +29,19 @@ body {
     min-height: 100vh;
     padding-top: 4rem; /* Mobile-first: Padding for fixed header */
 }
+
+/* Mobile Header Logo Size */
+.header-logo-main {
+    font-size: 1rem !important; 
+}
+.header-logo-main svg {
+    width: 1.5rem;
+    height: 1.5rem;
+}
+.header-logo-slogan {
+    font-size: 0.65rem !important;
+}
+
 #main-header {
     position: fixed; /* Mobile-first: Fixed header */
     top: 0;
@@ -71,12 +84,13 @@ main {
 }
 .comparison-table th, .comparison-table td {
     font-size: 0.7rem;
-    padding: 0.5rem;
+    padding: 0.5rem 0.25rem; /* Reduced padding on mobile */
 }
 .comparison-table tbody tr td:nth-child(2) { /* Target the feature name column */
     font-weight: 600;
     font-size: calc(0.7rem + 1px); 
     color: var(--text-color);
+    white-space: nowrap; /* Prevent feature names from wrapping */
 }
 .cta-button {
     display: block;
@@ -620,6 +634,12 @@ footer .text-gray-500 {
     }
     #share-section h2 { font-size: 1.25rem; }
     #share-section p { font-size: 0.875rem; }
+    .comparison-table th, .comparison-table td {
+        padding: 0.5rem; /* Restore padding on larger screens */
+    }
+    .comparison-table tbody tr td:nth-child(2) {
+        white-space: normal; /* Allow wrapping again on larger screens */
+    }
 }
 
 /* Desktop Styles */
@@ -630,6 +650,10 @@ footer .text-gray-500 {
     
     .header-logo-main {
         font-size: 1.125rem !important; /* text-lg */
+    }
+    .header-logo-main svg {
+        width: 2rem;
+        height: 2rem;
     }
     .header-logo-slogan {
         font-size: 0.75rem !important; /* text-sm */
