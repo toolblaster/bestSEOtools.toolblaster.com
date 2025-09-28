@@ -11,7 +11,7 @@
     --footer-text: #e5e7eb; /* Brighter for better contrast */
     --link-hover-bg: #fef2f2;
     --section-bg-alt: #f9fafb;
-    --semrush-color: #D65A00; /* Darker orange for better contrast */
+    --semrush-color: #C25100; /* Darkened orange for higher contrast */
     --mangools-color: #157A66; /* Darker green for better contrast */
 }
 html, body {
@@ -99,7 +99,7 @@ main {
     background-color: var(--semrush-color);
     color: white !important;
 }
-.cta-semrush:hover { background-color: #B34C00; } 
+.cta-semrush:hover { background-color: #A54500; } 
 .cta-mangools {
     background-color: var(--mangools-color);
     color: white !important;
@@ -579,8 +579,8 @@ footer .text-gray-500 {
     height: 20px;
 }
 
-.share-button.twitter { background-color: #1DA1F2; }
-.share-button.twitter:hover { background-color: #0c85d0; }
+.share-button.twitter { background-color: #1275B3; } /* Darkened for higher contrast */
+.share-button.twitter:hover { background-color: #0F6499; }
 
 .share-button.facebook { background-color: #1877F2; }
 .share-button.facebook:hover { background-color: #166fe5; }
