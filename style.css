@@ -85,12 +85,12 @@ main {
 .comparison-table th, .comparison-table td {
     font-size: 0.7rem;
     padding: 0.5rem 0.25rem; /* Reduced padding on mobile */
+    white-space: nowrap; /* Prevent ALL columns from wrapping on mobile */
 }
 .comparison-table tbody tr td:nth-child(2) { /* Target the feature name column */
     font-weight: 600;
     font-size: calc(0.7rem + 1px); 
     color: var(--text-color);
-    white-space: nowrap; /* Prevent feature names from wrapping */
 }
 .cta-button {
     display: block;
@@ -636,8 +636,6 @@ footer .text-gray-500 {
     #share-section p { font-size: 0.875rem; }
     .comparison-table th, .comparison-table td {
         padding: 0.5rem; /* Restore padding on larger screens */
-    }
-    .comparison-table tbody tr td:nth-child(2) {
         white-space: normal; /* Allow wrapping again on larger screens */
     }
 }
