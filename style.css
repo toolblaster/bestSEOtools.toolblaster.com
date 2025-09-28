@@ -1,14 +1,14 @@
 :root {
     --bg-color: #f9fafb;
-    --text-color: #121212;
-    --text-color-muted: #525252;
+    --text-color: #1f2937; /* Darkened for better contrast */
+    --text-color-muted: #374151; /* Darkened for better contrast */
     --accent-color: #E34037;
     --accent-color-dark: #C22D2D;
     --card-bg: #ffffff;
     --card-border: #eee;
     --header-bg: #ffffff;
     --footer-bg: #121212; /* Primary Black */
-    --footer-text: #cccccc; /* Slightly decreased contrast for footer text */
+    --footer-text: #e5e7eb; /* Brighter for better contrast */
     --link-hover-bg: #fef2f2;
     --section-bg-alt: #f9fafb;
     --semrush-color: #D65A00; /* Darker orange for better contrast */
