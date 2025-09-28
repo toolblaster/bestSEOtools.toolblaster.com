@@ -138,6 +138,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
         });
+        const loader = ctx.parentElement.querySelector('.chart-loader');
+        if (loader) setTimeout(() => loader.classList.add('hidden'), 300);
     }
 
     // --- FEATURE COVERAGE DOUGHNUT CHART ---
@@ -175,6 +177,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
         });
+        const loader = featureCtx.parentElement.querySelector('.chart-loader');
+        if (loader) setTimeout(() => loader.classList.add('hidden'), 300);
     }
 
     // --- PRICING BAR CHART ---
@@ -224,6 +228,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
         });
+        const loader = pricingCtx.parentElement.querySelector('.chart-loader');
+        if (loader) setTimeout(() => loader.classList.add('hidden'), 300);
     }
     
     // --- USER PROFILE BAR CHART ---
@@ -261,6 +267,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 scales: { x: { title: { display: true, text: 'Suitability Score (%)' } } }
             }
         });
+        const loader = userProfileCtx.parentElement.querySelector('.chart-loader');
+        if (loader) setTimeout(() => loader.classList.add('hidden'), 300);
     }
 
     // --- INTERACTIVE QUIZ LOGIC ---
