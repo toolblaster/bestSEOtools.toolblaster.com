@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const dateElement = document.getElementById('last-updated-date');
     if (dateElement) {
         const today = new Date();
-        const pastDate = new Date(today.setDate(today.getDate() - 5)); // Set to a consistent 5 days ago
+        const pastDate = new Date(today.setDate(today.getDate() - 5));
         const displayFormatter = new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'long' });
         dateElement.textContent = `Last Updated: ${displayFormatter.format(pastDate)}`;
     }
@@ -32,36 +32,29 @@ document.addEventListener('DOMContentLoaded', () => {
         const currentScrollY = window.scrollY;
         const isMobile = window.innerWidth < 640;
 
-        // Progress bar
         if (progressBar) {
             const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
             const progress = (currentScrollY / totalHeight) * 100;
             progressBar.style.width = `${progress}%`;
         }
 
-        // Back-to-top button
         if (backToTopButton) {
             backToTopButton.classList.toggle('show', currentScrollY > 300);
         }
 
-        // Header behavior
         if (header) {
             if (isMobile) {
-                // Mobile: Hide header on scroll down, show on scroll up
-                // We check if the user has scrolled more than the header's height
                 if (currentScrollY > lastScrollY && currentScrollY > header.offsetHeight) {
                     header.classList.add('header-hidden');
                 } else {
                     header.classList.remove('header-hidden');
                 }
-                // Ensure desktop-specific elements are hidden on mobile
                 if (ctaContainer) ctaContainer.classList.add('hidden');
                 if (navFlexContainer) {
                     navFlexContainer.classList.add('justify-center');
                     navFlexContainer.classList.remove('justify-between');
                 }
             } else {
-                // Desktop: Show/hide sticky CTAs and ensure header is always visible
                 header.classList.remove('header-hidden');
                 const isScrolled = currentScrollY > scrollThreshold;
                 if (ctaContainer) {
@@ -83,193 +76,92 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- EVENT LISTENERS ---
     window.addEventListener('scroll', debounce(handleScrollAndResize, 15));
     window.addEventListener('resize', debounce(handleScrollAndResize, 50));
-
-    // --- INITIAL CHECKS ON PAGE LOAD ---
     handleScrollAndResize();
 
-
-    // --- VISUAL SUMMARY CHART ---
-    const ctx = document.getElementById('seoToolChart');
-    if (ctx) {
-        new Chart(ctx, {
-            type: 'radar',
-            data: {
-                labels: ['Features', 'Ease of Use', 'Value for Money', 'Support', 'Data Accuracy'],
-                datasets: [{
-                    label: 'SEMrush',
-                    data: [9, 6, 8, 9, 9],
-                    backgroundColor: 'rgba(255, 110, 0, 0.2)',
-                    borderColor: 'rgba(255, 110, 0, 1)',
-                    borderWidth: 2,
-                    pointBackgroundColor: 'rgba(255, 110, 0, 1)',
-                    pointBorderColor: '#fff',
-                    pointHoverBackgroundColor: '#fff',
-                    pointHoverBorderColor: 'rgba(255, 110, 0, 1)'
-                }, {
-                    label: 'KWFinder (Mangools)',
-                    data: [7, 9, 9, 8, 8],
-                    backgroundColor: 'rgba(28, 178, 127, 0.2)',
-                    borderColor: 'rgba(28, 178, 127, 1)',
-                    borderWidth: 2,
-                    pointBackgroundColor: 'rgba(28, 178, 127, 1)',
-                    pointBorderColor: '#fff',
-                    pointHoverBackgroundColor: '#fff',
-                    pointHoverBorderColor: 'rgba(28, 178, 127, 1)'
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                scales: {
-                    r: {
-                        angleLines: { color: '#e5e7eb' },
-                        grid: { color: '#e5e7eb' },
-                        pointLabels: { font: { size: 14, weight: 'bold' }, color: '#374151' },
-                        ticks: { backdropColor: 'transparent', stepSize: 2 },
-                        min: 0,
-                        max: 10
-                    }
+    // --- CHART CREATION FUNCTIONS ---
+    const chartRenderers = {
+        'seoToolChart': (ctx) => {
+            new Chart(ctx, {
+                type: 'radar',
+                data: {
+                    labels: ['Features', 'Ease of Use', 'Value for Money', 'Support', 'Data Accuracy'],
+                    datasets: [{
+                        label: 'SEMrush', data: [9, 6, 8, 9, 9], backgroundColor: 'rgba(255, 110, 0, 0.2)', borderColor: 'rgba(255, 110, 0, 1)', borderWidth: 2, pointBackgroundColor: 'rgba(255, 110, 0, 1)', pointBorderColor: '#fff', pointHoverBackgroundColor: '#fff', pointHoverBorderColor: 'rgba(255, 110, 0, 1)'
+                    }, {
+                        label: 'KWFinder (Mangools)', data: [7, 9, 9, 8, 8], backgroundColor: 'rgba(28, 178, 127, 0.2)', borderColor: 'rgba(28, 178, 127, 1)', borderWidth: 2, pointBackgroundColor: 'rgba(28, 178, 127, 1)', pointBorderColor: '#fff', pointHoverBackgroundColor: '#fff', pointHoverBorderColor: 'rgba(28, 178, 127, 1)'
+                    }]
                 },
-                plugins: {
-                    legend: { position: 'top', labels: { font: { size: 14 } } }
-                }
-            }
-        });
-        const loader = ctx.parentElement.querySelector('.chart-loader');
-        if (loader) setTimeout(() => loader.classList.add('hidden'), 300);
-    }
+                options: { responsive: true, maintainAspectRatio: false, scales: { r: { angleLines: { color: '#e5e7eb' }, grid: { color: '#e5e7eb' }, pointLabels: { font: { size: 14, weight: 'bold' }, color: '#374151' }, ticks: { backdropColor: 'transparent', stepSize: 2 }, min: 0, max: 10 } }, plugins: { legend: { position: 'top', labels: { font: { size: 14 } } } } }
+            });
+        },
+        'featureDoughnutChart': (ctx) => {
+            new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['SEMrush Feature Coverage', 'KWFinder Feature Coverage'],
+                    datasets: [{
+                        label: 'Feature Coverage of 35 Key Areas', data: [33, 15], backgroundColor: ['rgba(255, 110, 0, 0.7)', 'rgba(28, 178, 127, 0.7)'], borderColor: ['rgba(255, 110, 0, 1)', 'rgba(28, 178, 127, 1)'], borderWidth: 1
+                    }]
+                },
+                options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'top' }, tooltip: { callbacks: { label: (c) => `${c.label || ''}: ${((c.parsed / 35) * 100).toFixed(0)}% (${c.parsed} of 35)` } } } }
+            });
+        },
+        'pricingBarChart': (ctx) => {
+             new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: [['SEMrush', 'Base Plan'], ['KWFinder', 'Base Plan']],
+                    datasets: [{ label: 'Starting Price ($/mo)', data: [119, 49], backgroundColor: 'rgba(227, 64, 55, 0.7)', borderColor: 'rgba(227, 64, 55, 1)', borderWidth: 1, yAxisID: 'y-price' }, { label: 'Keywords Tracked', data: [500, 200], backgroundColor: 'rgba(59, 130, 246, 0.7)', borderColor: 'rgba(59, 130, 246, 1)', borderWidth: 1, yAxisID: 'y-keywords' }]
+                },
+                options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: true, position: 'top' } }, scales: { 'y-price': { type: 'linear', display: true, position: 'left', title: { display: true, text: 'Price ($/mo)' } }, 'y-keywords': { type: 'linear', display: true, position: 'right', title: { display: true, text: 'Keywords Tracked' }, grid: { drawOnChartArea: false } } } }
+            });
+        },
+        'userProfileChart': (ctx) => {
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Bloggers', 'Freelancers/SMBs', 'Agencies'],
+                    datasets: [{ label: 'KWFinder Suitability', data: [90, 70, 20], backgroundColor: 'rgba(28, 178, 127, 0.7)', borderColor: 'rgba(28, 178, 127, 1)', borderWidth: 1 }, { label: 'SEMrush Suitability', data: [40, 80, 100], backgroundColor: 'rgba(255, 110, 0, 0.7)', borderColor: 'rgba(255, 110, 0, 1)', borderWidth: 1 }]
+                },
+                options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'top' }, tooltip: { callbacks: { label: (c) => `${c.dataset.label}: ${c.raw}%` } } }, scales: { x: { title: { display: true, text: 'Suitability Score (%)' } } } }
+            });
+        }
+    };
 
-    // --- FEATURE COVERAGE DOUGHNUT CHART ---
-    const featureCtx = document.getElementById('featureDoughnutChart');
-    if (featureCtx) {
-        new Chart(featureCtx, {
-            type: 'doughnut',
-            data: {
-                labels: ['SEMrush Feature Coverage', 'KWFinder Feature Coverage'],
-                datasets: [{
-                    label: 'Feature Coverage of 35 Key Areas',
-                    data: [33, 15],
-                    backgroundColor: ['rgba(255, 110, 0, 0.7)', 'rgba(28, 178, 127, 0.7)'],
-                    borderColor: ['rgba(255, 110, 0, 1)', 'rgba(28, 178, 127, 1)'],
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: { position: 'top' },
-                    tooltip: {
-                        callbacks: {
-                            label: function(context) {
-                                let label = context.label || '';
-                                if (label) { label += ': '; }
-                                if (context.parsed !== null) {
-                                    label += `${((context.parsed / 35) * 100).toFixed(0)}% (${context.parsed} of 35 features)`;
-                                }
-                                return label;
-                            }
-                        }
-                    }
-                }
-            }
-        });
-        const loader = featureCtx.parentElement.querySelector('.chart-loader');
-        if (loader) setTimeout(() => loader.classList.add('hidden'), 300);
-    }
-
-    // --- PRICING BAR CHART ---
-    const pricingCtx = document.getElementById('pricingBarChart');
-    if (pricingCtx) {
-        new Chart(pricingCtx, {
-            type: 'bar',
-            data: {
-                labels: [['SEMrush', 'Base Plan'], ['KWFinder', 'Base Plan']],
-                datasets: [
-                    {
-                        label: 'Starting Price ($/mo)',
-                        data: [119, 49],
-                        backgroundColor: 'rgba(227, 64, 55, 0.7)',
-                        borderColor: 'rgba(227, 64, 55, 1)',
-                        borderWidth: 1,
-                        yAxisID: 'y-price',
-                    },
-                    {
-                        label: 'Keywords Tracked',
-                        data: [500, 200],
-                        backgroundColor: 'rgba(59, 130, 246, 0.7)',
-                        borderColor: 'rgba(59, 130, 246, 1)',
-                        borderWidth: 1,
-                        yAxisID: 'y-keywords',
-                    }
-                ]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                 plugins: { legend: { display: true, position: 'top' } },
-                scales: {
-                    'y-price': {
-                        type: 'linear',
-                        display: true,
-                        position: 'left',
-                        title: { display: true, text: 'Price ($/mo)' }
-                    },
-                    'y-keywords': {
-                        type: 'linear',
-                        display: true,
-                        position: 'right',
-                        title: { display: true, text: 'Keywords Tracked' },
-                        grid: { drawOnChartArea: false },
-                    }
-                }
-            }
-        });
-        const loader = pricingCtx.parentElement.querySelector('.chart-loader');
-        if (loader) setTimeout(() => loader.classList.add('hidden'), 300);
-    }
+    // --- INTERSECTION OBSERVER FOR ANIMATIONS AND LAZY-LOADING CHARTS ---
+    const observerOptions = { root: null, rootMargin: '0px', threshold: 0.1 };
     
-    // --- USER PROFILE BAR CHART ---
-    const userProfileCtx = document.getElementById('userProfileChart');
-    if (userProfileCtx) {
-        new Chart(userProfileCtx, {
-            type: 'bar',
-            data: {
-                labels: ['Bloggers', 'Freelancers/SMBs', 'Agencies'],
-                datasets: [
-                    {
-                        label: 'KWFinder Suitability',
-                        data: [90, 70, 20],
-                        backgroundColor: 'rgba(28, 178, 127, 0.7)',
-                        borderColor: 'rgba(28, 178, 127, 1)',
-                        borderWidth: 1
-                    },
-                    {
-                        label: 'SEMrush Suitability',
-                        data: [40, 80, 100],
-                        backgroundColor: 'rgba(255, 110, 0, 0.7)',
-                        borderColor: 'rgba(255, 110, 0, 1)',
-                        borderWidth: 1
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // Handle fade-in animations
+                if (entry.target.classList.contains('fade-in-section')) {
+                    entry.target.classList.add('is-visible');
+                }
+                
+                // Handle chart lazy-loading
+                if (entry.target.tagName === 'CANVAS') {
+                    const chartId = entry.target.id;
+                    if (chartRenderers[chartId] && !entry.target.dataset.rendered) {
+                        const loader = entry.target.parentElement.querySelector('.chart-loader');
+                        chartRenderers[chartId](entry.target);
+                        entry.target.dataset.rendered = "true";
+                        if(loader) setTimeout(() => loader.classList.add('hidden'), 300);
                     }
-                ]
-            },
-            options: {
-                indexAxis: 'y',
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: { position: 'top' },
-                    tooltip: { callbacks: { label: (context) => `${context.dataset.label}: ${context.raw}%` } }
-                },
-                scales: { x: { title: { display: true, text: 'Suitability Score (%)' } } }
+                }
+                
+                // Stop observing once the action is done
+                observer.unobserve(entry.target);
             }
         });
-        const loader = userProfileCtx.parentElement.querySelector('.chart-loader');
-        if (loader) setTimeout(() => loader.classList.add('hidden'), 300);
-    }
+    }, observerOptions);
+
+    // Target all elements that need to be observed
+    document.querySelectorAll('.fade-in-section, canvas').forEach(el => {
+        observer.observe(el);
+    });
 
     // --- INTERACTIVE QUIZ LOGIC ---
     const quizContainer = document.getElementById('quiz-container');
@@ -322,16 +214,12 @@ document.addEventListener('DOMContentLoaded', () => {
             if (answers.question4 === 'keywords') mangoolsPoints += 2;
             if (answers.question5 === 'critical') semrushPoints += 2;
             if (answers.question5 === 'not_important') mangoolsPoints += 2;
-
-            // New question scoring
             if (answers.question6 === 'comprehensive') semrushPoints += 2;
             if (answers.question6 === 'basic') mangoolsPoints++;
             if (answers.question6 === 'detailed') { semrushPoints++; mangoolsPoints++; }
-            
             if (answers.question7 === 'strategy') semrushPoints += 2;
             if (answers.question7 === 'blogging') mangoolsPoints += 2;
             if (answers.question7 === 'optimization') { semrushPoints++; mangoolsPoints++; }
-
             if (answers.question8 === 'critical-health') semrushPoints += 2;
             if (answers.question8 === 'low-priority') mangoolsPoints += 2;
             if (answers.question8 === 'basics') { semrushPoints++; mangoolsPoints++; }
@@ -340,27 +228,13 @@ document.addEventListener('DOMContentLoaded', () => {
             let details = {};
 
             if (recommendation === 'SEMrush') {
-                details = {
-                    name: 'SEMrush',
-                    text: "Based on your need for advanced features and comprehensive data, SEMrush is the ideal all-in-one platform to scale your SEO efforts.",
-                    plan: "Guru Plan",
-                    feature: "Automated client reporting and in-depth site audits.",
-                    link: "https://semrush.com/pricing", 
-                    ctaClass: "cta-semrush"
-                };
+                details = { name: 'SEMrush', text: "Based on your need for advanced features and comprehensive data, SEMrush is the ideal all-in-one platform to scale your SEO efforts.", plan: "Guru Plan", feature: "Automated client reporting and in-depth site audits.", link: "https://semrush.com/pricing", ctaClass: "cta-semrush" };
                 if (answers.question3 === 'freelancer' && answers.question2 !== 'high') {
                     details.plan = "Pro Plan";
                     details.feature = "Comprehensive competitor analysis tools.";
                 }
             } else {
-                details = {
-                    name: 'KWFinder (Mangools)',
-                    text: "For your focus on core SEO tasks with an emphasis on usability and budget, the Mangools suite is the perfect fit.",
-                    plan: "Premium Plan",
-                    feature: "Excellent keyword research with a user-friendly interface.",
-                    link: "https://mangools.com#a5ebaddebfeebf80fc747e102",
-                    ctaClass: "cta-mangools"
-                };
+                details = { name: 'KWFinder (Mangools)', text: "For your focus on core SEO tasks with an emphasis on usability and budget, the Mangools suite is the perfect fit.", plan: "Premium Plan", feature: "Excellent keyword research with a user-friendly interface.", link: "https://mangools.com#a5ebaddebfeebf80fc747e102", ctaClass: "cta-mangools" };
                 if (answers.question1 === 'beginner' && answers.question2 === 'low') {
                     details.plan = "Basic Plan";
                     details.feature = "Finding low-competition keywords quickly.";
