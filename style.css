@@ -73,6 +73,12 @@ main {
     font-size: 0.7rem;
     padding: 0.5rem;
 }
+.comparison-table tbody tr {
+    transition: background-color 0.2s ease-in-out;
+}
+.comparison-table tbody tr:hover {
+    background-color: var(--link-hover-bg);
+}
 .comparison-table tbody tr td:nth-child(2) { /* Target the feature name column */
     font-weight: 600;
     font-size: calc(0.7rem + 1px); 
@@ -110,6 +116,10 @@ main {
     transition: all 0.2s ease-in-out;
     background-color: #ffffff; /* Make options stand out */
     border: 1px solid #d1d5db; /* Add a visible border */
+    width: 100%; /* Ensure buttons fill the grid cell */
+    font-family: inherit; /* Inherit font from body */
+    font-size: inherit; /* Inherit font size */
+    color: inherit; /* Inherit text color */
 }
 .quiz-option:hover {
     transform: translateY(-2px);
@@ -130,6 +140,14 @@ main {
 .star-rating { 
     color: #f59e0b; 
     white-space: nowrap;
+}
+
+/* Accessibility: Add a clear focus indicator for keyboard navigation */
+a:focus-visible, button:focus-visible, details > summary:focus-visible {
+    outline: 2px solid var(--accent-color);
+    outline-offset: 2px;
+    box-shadow: 0 0 0 4px rgba(227, 64, 55, 0.3);
+    border-radius: 2px;
 }
 
 .legal-content {
