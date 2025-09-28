@@ -588,6 +588,11 @@ footer .text-gray-500 {
 .share-button.whatsapp { background-color: #25D366 !important; } /* Added !important */
 .share-button.whatsapp:hover { background-color: #128C7E; }
 
+/* --- Mobile Header Hide on Scroll --- */
+#main-header.header-hidden {
+    transform: translateY(-100%);
+}
+
 /* --- Media Queries for Responsive Design (Mobile-First) --- */
 
 /* Tablet Styles */
