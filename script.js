@@ -173,7 +173,7 @@ document.addEventListener('DOMContentLoaded', () => {
         new Chart(pricingCtx, {
             type: 'bar',
             data: {
-                labels: ['SEMrush Base Plan', 'KWFinder Base Plan'],
+                labels: [['SEMrush', 'Base Plan'], ['KWFinder', 'Base Plan']],
                 datasets: [
                     {
                         label: 'Starting Price ($/mo)',
