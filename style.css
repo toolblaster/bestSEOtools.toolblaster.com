@@ -237,6 +237,16 @@ a:focus-visible, button:focus-visible, details > summary:focus-visible {
     margin-bottom: 1rem;
     border: 1px solid var(--accent-color);
 }
+/* Styles for fade-in animation */
+.fade-in-section {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+.fade-in-section.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
 .icon-list {
     list-style: none;
     padding-left: 0;
