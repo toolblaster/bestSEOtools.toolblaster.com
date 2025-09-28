@@ -3,7 +3,7 @@
     --text-color: #1f2937; /* Darkened for better contrast */
     --text-color-muted: #374151; /* Darkened for better contrast */
     --accent-color: #E34037;
-    --accent-color-dark: #C22D2D;
+    --accent-color-dark: #C22D;
     --card-bg: #ffffff;
     --card-border: #eee;
     --header-bg: #ffffff;
@@ -82,16 +82,36 @@ main {
     color: var(--text-color) !important;
     font-weight: 600;
 }
-.comparison-table th, .comparison-table td {
-    font-size: 0.7rem;
-    padding: 0.5rem 0.25rem; /* Reduced padding on mobile */
-    white-space: nowrap; /* Prevent ALL columns from wrapping on mobile */
+
+/* --- Mobile Table Styles --- */
+.comparison-table {
+    width: 100%;
+    table-layout: fixed; /* Use fixed layout to control columns */
+    border-collapse: collapse;
 }
-.comparison-table tbody tr td:nth-child(2) { /* Target the feature name column */
+.comparison-table th, .comparison-table td {
+    font-size: 0.65rem; /* Drastically reduce font size to fit */
+    padding: 0.5rem 0.2rem; /* Adjust padding */
+    white-space: nowrap; /* Force all columns to single line */
+    overflow: hidden; /* Hide any content that still overflows */
+    text-overflow: ellipsis; /* Show '...' for hidden content */
+    vertical-align: middle;
+    text-align: center; /* Center all columns by default */
+}
+.comparison-table th {
+    font-weight: 700;
+}
+.comparison-table tbody tr {
+    border-bottom: 1px solid var(--card-border);
+}
+/* Override alignment for the feature column */
+.comparison-table th:nth-child(2), .comparison-table td:nth-child(2) {
+    text-align: left;
     font-weight: 600;
-    font-size: calc(0.7rem + 1px); 
     color: var(--text-color);
 }
+/* --- End Mobile Table Styles --- */
+
 .cta-button {
     display: block;
     padding: 0.375rem 0.875rem;
@@ -634,9 +654,15 @@ footer .text-gray-500 {
     }
     #share-section h2 { font-size: 1.25rem; }
     #share-section p { font-size: 0.875rem; }
+    
+    /* Restore table styles for larger screens */
     .comparison-table th, .comparison-table td {
-        padding: 0.5rem; /* Restore padding on larger screens */
-        white-space: normal; /* Allow wrapping again on larger screens */
+        font-size: 0.7rem;
+        padding: 0.5rem; /* Restore padding */
+        width: auto; /* Reset width */
+    }
+    .comparison-table tbody tr td:nth-child(2) {
+        font-size: calc(0.7rem + 1px);
     }
 }
 
