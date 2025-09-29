@@ -1,3 +1,8 @@
 User-agent: *
+Disallow: /script.js
+Disallow: /admin/
+Disallow: /cgi-bin/
+
 Allow: /
+# Sitemap location
 Sitemap: https://bestseotools.toolblaster.com/sitemap.xml
