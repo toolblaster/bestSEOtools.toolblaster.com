@@ -666,15 +666,6 @@ footer .text-gray-500 {
 
 /* Reduce logo size on mobile screens */
 @media (max-width: 639px) {
-    .header-logo-main {
-        font-size: 1rem; /* Adjust from text-xl */
-    }
-
-    .header-logo-main svg {
-        width: 1.75rem; /* Adjust from w-8 */
-        height: 1.75rem; /* Adjust from h-8 */
-    }
-
     .header-logo-slogan {
         font-size: 0.65rem; /* Adjust from text-xs */
     }
@@ -716,9 +707,6 @@ footer .text-gray-500 {
     .legal-content h2 { font-size: 1.5rem; }
     .legal-content h3 { font-size: 1.1rem; }
     
-    .header-logo-main {
-        font-size: 1.125rem !important; /* text-lg */
-    }
     .header-logo-slogan {
         font-size: 0.75rem !important; /* text-sm */
     }
