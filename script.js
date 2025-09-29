@@ -83,6 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- CHART CREATION FUNCTIONS ---
     const chartRenderers = {
         'seoToolChart': (ctx) => {
+            const isMobile = window.innerWidth < 640;
             new Chart(ctx, {
                 type: 'radar',
                 data: {
@@ -93,10 +94,40 @@ document.addEventListener('DOMContentLoaded', () => {
                         label: 'KWFinder (Mangools)', data: [7, 9, 9, 8, 8], backgroundColor: 'rgba(28, 178, 127, 0.2)', borderColor: 'rgba(28, 178, 127, 1)', borderWidth: 2, pointBackgroundColor: 'rgba(28, 178, 127, 1)', pointBorderColor: '#fff', pointHoverBackgroundColor: '#fff', pointHoverBorderColor: 'rgba(28, 178, 127, 1)'
                     }]
                 },
-                options: { responsive: true, maintainAspectRatio: false, scales: { r: { angleLines: { color: '#e5e7eb' }, grid: { color: '#e5e7eb' }, pointLabels: { font: { size: 14, weight: 'bold' }, color: '#374151' }, ticks: { backdropColor: 'transparent', stepSize: 2 }, min: 0, max: 10 } }, plugins: { legend: { position: 'top', labels: { font: { size: 14 } } } } }
+                options: { 
+                    responsive: true, 
+                    maintainAspectRatio: false, 
+                    scales: { 
+                        r: { 
+                            angleLines: { color: '#e5e7eb' }, 
+                            grid: { color: '#e5e7eb' }, 
+                            pointLabels: { 
+                                font: { 
+                                    size: isMobile ? 10 : 14, 
+                                    weight: 'bold' 
+                                }, 
+                                color: '#374151' 
+                            }, 
+                            ticks: { backdropColor: 'transparent', stepSize: 2 }, 
+                            min: 0, 
+                            max: 10 
+                        } 
+                    }, 
+                    plugins: { 
+                        legend: { 
+                            position: 'top', 
+                            labels: { 
+                                font: { 
+                                    size: isMobile ? 12 : 14 
+                                } 
+                            } 
+                        } 
+                    } 
+                }
             });
         },
         'featureDoughnutChart': (ctx) => {
+            const isMobile = window.innerWidth < 640;
             new Chart(ctx, {
                 type: 'doughnut',
                 data: {
@@ -105,27 +136,117 @@ document.addEventListener('DOMContentLoaded', () => {
                         label: 'Feature Coverage of 35 Key Areas', data: [33, 15], backgroundColor: ['rgba(255, 110, 0, 0.7)', 'rgba(28, 178, 127, 0.7)'], borderColor: ['rgba(255, 110, 0, 1)', 'rgba(28, 178, 127, 1)'], borderWidth: 1
                     }]
                 },
-                options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'top' }, tooltip: { callbacks: { label: (c) => `${c.label || ''}: ${((c.parsed / 35) * 100).toFixed(0)}% (${c.parsed} of 35)` } } } }
+                options: { 
+                    responsive: true, 
+                    maintainAspectRatio: false, 
+                    plugins: { 
+                        legend: { 
+                            position: 'top',
+                            labels: {
+                                font: {
+                                    size: isMobile ? 11 : 12
+                                }
+                            }
+                        }, 
+                        tooltip: { callbacks: { label: (c) => `${c.label || ''}: ${((c.parsed / 35) * 100).toFixed(0)}% (${c.parsed} of 35)` } } 
+                    } 
+                }
             });
         },
         'pricingBarChart': (ctx) => {
+             const isMobile = window.innerWidth < 640;
              new Chart(ctx, {
                 type: 'bar',
                 data: {
                     labels: [['SEMrush', 'Base Plan'], ['KWFinder', 'Base Plan']],
                     datasets: [{ label: 'Starting Price ($/mo)', data: [119, 49], backgroundColor: 'rgba(227, 64, 55, 0.7)', borderColor: 'rgba(227, 64, 55, 1)', borderWidth: 1, yAxisID: 'y-price' }, { label: 'Keywords Tracked', data: [500, 200], backgroundColor: 'rgba(59, 130, 246, 0.7)', borderColor: 'rgba(59, 130, 246, 1)', borderWidth: 1, yAxisID: 'y-keywords' }]
                 },
-                options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: true, position: 'top' } }, scales: { 'y-price': { type: 'linear', display: true, position: 'left', title: { display: true, text: 'Price ($/mo)' } }, 'y-keywords': { type: 'linear', display: true, position: 'right', title: { display: true, text: 'Keywords Tracked' }, grid: { drawOnChartArea: false } } } }
+                options: { 
+                    responsive: true, 
+                    maintainAspectRatio: false, 
+                    plugins: { 
+                        legend: { 
+                            display: true, 
+                            position: 'top',
+                            labels: {
+                                font: {
+                                    size: isMobile ? 11 : 12
+                                }
+                            }
+                        } 
+                    }, 
+                    scales: { 
+                        x: {
+                            ticks: {
+                                font: {
+                                    size: isMobile ? 10 : 12
+                                }
+                            }
+                        },
+                        'y-price': { 
+                            type: 'linear', 
+                            display: true, 
+                            position: 'left', 
+                            title: { 
+                                display: true, 
+                                text: 'Price ($/mo)',
+                                font: { size: isMobile ? 10 : 12 }
+                            } 
+                        }, 
+                        'y-keywords': { 
+                            type: 'linear', 
+                            display: true, 
+                            position: 'right', 
+                            title: { 
+                                display: true, 
+                                text: 'Keywords Tracked',
+                                font: { size: isMobile ? 10 : 12 }
+                            }, 
+                            grid: { 
+                                drawOnChartArea: false 
+                            } 
+                        } 
+                    } 
+                }
             });
         },
         'userProfileChart': (ctx) => {
+            const isMobile = window.innerWidth < 640;
             new Chart(ctx, {
                 type: 'bar',
                 data: {
                     labels: ['Bloggers', 'Freelancers/SMBs', 'Agencies'],
                     datasets: [{ label: 'KWFinder Suitability', data: [90, 70, 20], backgroundColor: 'rgba(28, 178, 127, 0.7)', borderColor: 'rgba(28, 178, 127, 1)', borderWidth: 1 }, { label: 'SEMrush Suitability', data: [40, 80, 100], backgroundColor: 'rgba(255, 110, 0, 0.7)', borderColor: 'rgba(255, 110, 0, 1)', borderWidth: 1 }]
                 },
-                options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'top' }, tooltip: { callbacks: { label: (c) => `${c.dataset.label}: ${c.raw}%` } } }, scales: { x: { title: { display: true, text: 'Suitability Score (%)' } } } }
+                options: { 
+                    indexAxis: 'y', 
+                    responsive: true, 
+                    maintainAspectRatio: false, 
+                    plugins: { 
+                        legend: { 
+                            position: 'top',
+                            labels: {
+                                font: {
+                                    size: isMobile ? 11 : 12
+                                }
+                            }
+                        }, 
+                        tooltip: { 
+                            callbacks: { 
+                                label: (c) => `${c.dataset.label}: ${c.raw}%` 
+                            } 
+                        } 
+                    }, 
+                    scales: { 
+                        x: { 
+                            title: { 
+                                display: true, 
+                                text: 'Suitability Score (%)',
+                                font: { size: isMobile ? 10 : 12 }
+                            } 
+                        } 
+                    } 
+                }
             });
         }
     };
