@@ -17,9 +17,21 @@ It helps search engines like Google discover and understand your site structure.
 <lastmod>2025-09-29</lastmod>
 
 <!-- The priority of this URL relative to other URLs on your site (from 0.0 to 1.0) -->
-<!-- Since this is the only page, it gets the highest priority. -->
+<!-- The homepage gets the highest priority. -->
 <priority>1.0</priority>
 
+</url>
+
+<!-- URL entry for the contact and legal page -->
+<url>
+<!-- The full URL of the page -->
+<loc>https://bestseotools.toolblaster.com/contact-us-and-legal.html</loc>
+
+<!-- The date the file was last modified (YYYY-MM-DD format) -->
+<lastmod>2025-09-29</lastmod>
+
+<!-- The priority of this URL relative to other URLs on your site (from 0.0 to 1.0) -->
+<priority>0.8</priority>
 </url>
 
 </urlset>
