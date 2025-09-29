@@ -664,6 +664,22 @@ footer .text-gray-500 {
 
 /* --- Media Queries for Responsive Design (Mobile-First) --- */
 
+/* Reduce logo size on mobile screens */
+@media (max-width: 639px) {
+    .header-logo-main {
+        font-size: 1rem; /* Adjust from text-xl */
+    }
+
+    .header-logo-main svg {
+        width: 1.75rem; /* Adjust from w-8 */
+        height: 1.75rem; /* Adjust from h-8 */
+    }
+
+    .header-logo-slogan {
+        font-size: 0.65rem; /* Adjust from text-xs */
+    }
+}
+
 /* Tablet Styles */
 @media (min-width: 640px) {
     .cta-button {
