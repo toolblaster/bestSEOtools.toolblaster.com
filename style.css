@@ -662,8 +662,11 @@ footer .text-gray-500 {
 .share-button.linkedin { background-color: #0077B5; }
 .share-button.linkedin:hover { background-color: #005582; }
 
-.share-button.reddit { background-color: #FF4500; }
-.share-button.reddit:hover { background-color: #CC3700; }
+.share-button.telegram { background-color: #24A1DE; }
+.share-button.telegram:hover { background-color: #1E88C0; }
+
+.share-button.threads { background-color: #1a1a1a; }
+.share-button.threads:hover { background-color: #3f3f3f; }
 
 
 /* --- Mobile Header Hide on Scroll --- */
