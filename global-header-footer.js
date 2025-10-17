@@ -88,8 +88,8 @@ document.addEventListener('DOMContentLoaded', function() {
             <a href="#" id="share-linkedin" class="share-button linkedin" target="_blank" rel="noopener noreferrer" aria-label="Share on LinkedIn">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.968v16h4.969v-8.399c0-4.67 6.029-4.484 6.029 0v8.399h4.988v-10.131c0-7.88-8.922-7.594-11.018-3.714v-2.155z"/></svg>
             </a>
-            <a href="#" id="share-reddit" class="share-button reddit" target="_blank" rel="noopener noreferrer" aria-label="Share on Reddit">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M24 11.5c0-1.65-1.35-3-3-3-.96 0-1.86.48-2.47 1.22-.2-.04-.4-.06-.6-.06h-3.41c.44-.48.81-1.05.98-1.72 1.4-.29 2.48-1.62 2.48-3.18 0-1.81-1.46-3.27-3.27-3.27-1.03 0-1.92.48-2.48 1.22-.2-.04-.4-.06-.6-.06H8.24c.44-.48.81-1.05.98-1.72 1.4-.29 2.48-1.62 2.48-3.18 0-1.81-1.46-3.27-3.27-3.27s-3.27 1.46-3.27 3.27c0 1.56 1.08 2.89 2.48 3.18.17.67.54 1.24.98 1.72H3.77c-.2 0-.4.02-.6.06C2.56 8.98 1.66 9.54 1.66 10.5c0 1.65 1.35 3 3 3 .96 0 1.86-.48 2.47-1.22.2.04.4.06.6.06h3.41c-.44.48-.81 1.05-.98 1.72-1.4.29-2.48 1.62-2.48 3.18 0 1.81 1.46 3.27 3.27 3.27 1.03 0 1.92-.48 2.48-1.22.2.04.4.06.6.06h5.31c.2 0 .4-.02.6-.06.61.74 1.51 1.22 2.47 1.22 1.65 0 3-1.35 3-3 0-1.56-1.08-2.89-2.48-3.18-.17-.67-.54-1.24-.98-1.72h.6v.01c1.65 0 3-1.35 3-3zm-12 5.01c0-.82.67-1.5 1.5-1.5s1.5.67 1.5 1.5-.67 1.5-1.5 1.5-1.5-.68-1.5-1.5zm-8.25-5.01c-.83 0-1.5.67-1.5 1.5s.67 1.5 1.5 1.5 1.5-.67 1.5-1.5-.67-1.5-1.5-1.5zm12.75 5.01c-.83 0-1.5.67-1.5 1.5s.67 1.5 1.5 1.5 1.5-.67 1.5-1.5-.67-1.5-1.5-1.5z"/></svg>
+            <a href="#" id="share-telegram" class="share-button telegram" target="_blank" rel="noopener noreferrer" aria-label="Share on Telegram">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.28 1.4.24 1.15.99l-2.64 12.14c-.25.92-1 .94-1.5.43l-3.89-3.13-1.87 1.83c-.22.21-.4.41-.7.41z"/></svg>
             </a>
         </div>
     </section>`;
@@ -127,9 +127,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const shareOnFacebook = document.getElementById('share-facebook');
     const shareOnWhatsApp = document.getElementById('share-whatsapp');
     const shareOnLinkedIn = document.getElementById('share-linkedin');
-    const shareOnReddit = document.getElementById('share-reddit');
+    const shareOnTelegram = document.getElementById('share-telegram');
 
-    if (shareOnX && shareOnFacebook && shareOnWhatsApp && shareOnLinkedIn && shareOnReddit) {
+    if (shareOnX && shareOnFacebook && shareOnWhatsApp && shareOnLinkedIn && shareOnTelegram) {
         const pageUrl = encodeURIComponent(window.location.href);
         const pageTitle = encodeURIComponent(document.title);
 
@@ -138,14 +138,14 @@ document.addEventListener('DOMContentLoaded', function() {
             facebook: `https://www.facebook.com/sharer/sharer.php?u=${pageUrl}`,
             whatsapp: `https://api.whatsapp.com/send?text=${pageTitle}%20${pageUrl}`,
             linkedin: `https://www.linkedin.com/shareArticle?mini=true&url=${pageUrl}&title=${pageTitle}`,
-            reddit: `https://www.reddit.com/submit?url=${pageUrl}&title=${pageTitle}`
+            telegram: `https://t.me/share/url?url=${pageUrl}&text=${pageTitle}`
         };
 
         shareOnX.href = shareUrls.x;
         shareOnFacebook.href = shareUrls.facebook;
         shareOnWhatsApp.href = shareUrls.whatsapp;
         shareOnLinkedIn.href = shareUrls.linkedin;
-        shareOnReddit.href = shareUrls.reddit;
+        shareOnTelegram.href = shareUrls.telegram;
 
         document.querySelectorAll('.share-button').forEach(button => {
             button.addEventListener('click', function(e) {
