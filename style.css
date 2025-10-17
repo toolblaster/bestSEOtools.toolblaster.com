@@ -601,19 +601,19 @@ footer .text-gray-500 {
 
 /* --- Share Section Styles --- */
 #share-section {
-    padding-top: 1.5rem;
-    padding-bottom: 1.5rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
     background-color: var(--section-bg-alt);
     margin-top: 1rem;
 }
 
 #share-section h2 {
-    font-size: 1.25rem;
-    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+    margin-bottom: 0.25rem;
 }
 #share-section p {
-    font-size: 0.875rem;
-    margin-bottom: 1rem;
+    font-size: 0.8rem;
+    margin-bottom: 0.75rem;
 }
 
 .share-buttons {
@@ -622,7 +622,7 @@ footer .text-gray-500 {
     align-items: center;
     justify-content: center;
     gap: 1rem;
-    margin-top: 1.5rem;
+    margin-top: 1rem;
 }
 
 .share-button {
