@@ -106,31 +106,7 @@
     </div>
 
     <!-- Header Section -->
-    <header id="main-header" class="bg-white shadow-md z-50 sticky top-0 transition-all duration-300">
-        <nav class="container mx-auto px-4 sm:px-6 lg:px-8" aria-label="Main Navigation">
-            <div class="flex items-center justify-center h-16">
-                <a href="/" class="header-logo inline-block text-center" aria-label="Back to Homepage">
-                    <div class="pb-1 border-b border-black">
-                        <div class="header-logo-main text-sm sm:text-xl font-bold text-gray-800 flex items-center justify-center">
-                           <!-- Responsive SEO Icon -->
-                           <svg class="w-7 h-7 sm:w-8 sm:h-8 mr-2 text-red-500" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M3 3v18h18"/>
-                                <path d="m18 9-6 6-4-4-3 3"/>
-                           </svg>
-                           <span class="text-gray-900">BestSEOTools.toolblaster.com</span>
-                        </div>
-                    </div>
-                    <p class="header-logo-slogan text-gray-400 tracking-wider text-[0.65rem] sm:text-xs pt-1">Compare • Analyze • Rank</p>
-                </a>
-                
-                <!-- Sticky CTAs - Hidden by default, shown with JS -->
-                <div id="sticky-cta-container" class="hidden items-center space-x-2">
-                    <a href="https://semrush.com/pricing" rel="nofollow sponsored" class="cta-button cta-semrush !text-sm !py-2 !px-4">Try SEMrush</a>
-                    <a href="https://mangools.com#a5ebaddebfeebf80fc747e102" rel="nofollow sponsored" class="cta-button cta-mangools !text-sm !py-2 !px-4">Try KWFinder</a>
-                </div>
-            </div>
-        </nav>
-    </header>
+    <div id="index-header-placeholder"></div>
 
     <main class="container">
         <div class="legal-content">
@@ -382,7 +358,7 @@
                             <tr><td class="text-center font-medium text-gray-600">27</td><td>🌐 Language Support</td><td>✅ Excellent for global SEO</td><td>✅ Great for many languages</td></tr>
                             <tr><td class="text-center font-medium text-gray-600">28</td><td>📱 Mobile Friendliness</td><td>⚠️ Best on desktop</td><td>✅ Works great on mobile</td></tr>
                             <tr><td class="text-center font-medium text-gray-600">29</td><td>🎓 Learning Resources</td><td>✅ Huge library of courses</td><td>✅ Great blog and guides</td></tr>
-                            <tr><td="text-center font-medium text-gray-600">30</td><td>🧠 SEO Scores</td><td>✅ Detailed health scores</td><td>⚠️ Simplified scores</td></tr>
+                            <tr><td class="text-center font-medium text-gray-600">30</td><td>🧠 SEO Scores</td><td>✅ Detailed health scores</td><td>⚠️ Simplified scores</td></tr>
                             <tr><td class="text-center font-medium text-gray-600">31</td><td>🎯 Paid Ad Data</td><td>✅ See competitor ads</td><td>❌ No ad data</td></tr>
                             <tr><td class="text-center font-medium text-gray-600">32</td><td>📈 Traffic Analytics</td><td>✅ See where traffic comes from</td><td>❌ Not available</td></tr>
                             <tr><td class="text-center font-medium text-gray-600">33</td><td>📌 Local SEO</td><td>✅ Advanced local tools</td><td>✅ Good for city tracking</td></tr>
@@ -793,15 +769,7 @@
     </main>
 
     <!-- Footer Section -->
-    <footer class="bg-gray-900 text-white py-4">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <p class="text-xs text-gray-300">
-                &copy; 2025 bestseotools.toolblaster.com by Vikas Rana - All Rights Reserved | 
-                <a href="/contact-us-and-legal.html" class="hover:text-white underline">Contact & Legal</a> |
-                <a href="https://toolblaster.com" target="_blank" rel="noopener" class="hover:text-white underline">toolblaster.com</a>
-            </p>
-        </div>
-    </footer>
+    <div id="index-footer-placeholder"></div>
 
     <!-- Image Popup Modal -->
     <div id="image-popup" class="image-popup-overlay hidden">
@@ -815,6 +783,7 @@
     </button>
 
     <!-- Link to External JS (with defer) -->
+    <script src="global-header-footer.js" defer></script>
     <script src="script.js" defer></script>
 </body>
 </html>
