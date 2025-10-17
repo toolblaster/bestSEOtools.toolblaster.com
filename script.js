@@ -343,7 +343,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (answers.question7 === 'optimization') { semrushPoints++; mangoolsPoints++; }
             if (answers.question8 === 'critical-health') semrushPoints += 2;
             if (answers.question8 === 'low-priority') mangoolsPoints += 2;
-            if (answers.question8 === 'basics') { semrushPoints++; mangoolsPoints++; }
+            if (answers.question8 === 'basics') { semrushPoints++; mangools++; }
 
             const recommendation = semrushPoints > mangoolsPoints ? 'SEMrush' : 'KWFinder (Mangools)';
             let details = {};
@@ -395,29 +395,3 @@ document.addEventListener('DOMContentLoaded', () => {
         document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !popup.classList.contains('hidden')) closePopup(); });
     }
 });
-
-// --- SOCIAL SHARING LOGIC ---
-const shareOnTwitter = document.getElementById('share-twitter');
-const shareOnFacebook = document.getElementById('share-facebook');
-
-if (shareOnTwitter && shareOnFacebook) {
-    const pageUrl = encodeURIComponent(window.location.href);
-    const pageTitle = encodeURIComponent(document.title);
-
-    const shareUrls = {
-        twitter: `https://twitter.com/intent/tweet?url=${pageUrl}&text=${pageTitle}`,
-        facebook: `https://www.facebook.com/sharer/sharer.php?u=${pageUrl}`
-    };
-
-    shareOnTwitter.href = shareUrls.twitter;
-    shareOnFacebook.href = shareUrls.facebook;
-
-    document.querySelectorAll('.share-button').forEach(button => {
-        button.addEventListener('click', function(e) {
-            e.preventDefault();
-            const url = this.href;
-            const windowOptions = 'width=600,height=400,scrollbars=yes,resizable=yes';
-            window.open(url, 'Share', windowOptions);
-        });
-    });
-}
