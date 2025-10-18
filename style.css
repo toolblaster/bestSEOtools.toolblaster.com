@@ -27,7 +27,7 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    padding-top: 4rem; /* Mobile-first: Padding for fixed header */
+    padding-top: 3rem; /* Mobile-first: Padding for fixed header */
 }
 #main-header {
     position: fixed; /* Mobile-first: Fixed header */
