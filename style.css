@@ -206,7 +206,7 @@ a:focus-visible, button:focus-visible, details > summary:focus-visible {
     padding: 1rem; /* Mobile-first padding */
 }
 .legal-content h2 {
-    font-size: 1.1rem; /* Mobile-first H2 size */
+    font-size: 1rem; /* Mobile-first H2 size */
     font-weight: 700;
     color: var(--text-color);
     margin-top: 0.75rem;
@@ -215,7 +215,7 @@ a:focus-visible, button:focus-visible, details > summary:focus-visible {
     padding-bottom: 0.5rem;
 }
 .legal-content h3 {
-    font-size: 1rem;
+    font-size: 0.9rem;
     font-weight: 700;
     color: var(--text-color);
     margin-top: 1.25rem;
@@ -225,7 +225,7 @@ a:focus-visible, button:focus-visible, details > summary:focus-visible {
     color: var(--text-color-muted);
     margin-bottom: 1rem;
     line-height: 1.6;
-    font-size: 0.875rem;
+    font-size: 0.8rem;
 }
 .legal-content ul:not(.icon-list):not(.action-plan-list):not(.toc-list), .legal-content ol {
     padding-left: 1.25rem; 
@@ -488,7 +488,7 @@ a:focus-visible, button:focus-visible, details > summary:focus-visible {
 }
 .verdict-item h3 {
     color: var(--text-color);
-    font-size: 1rem;
+    font-size: 0.9rem;
     font-weight: 700;
     margin-top: 0;
     margin-bottom: 0.5rem;
@@ -608,7 +608,7 @@ footer .text-gray-500 {
 }
 
 #share-section h2 {
-    font-size: 1rem;
+    font-size: 0.9rem;
     margin-bottom: 0.1rem;
 }
 #share-section p {
@@ -708,8 +708,8 @@ footer .text-gray-500 {
 /* Desktop Styles */
 @media (min-width: 768px) {
     .legal-content h1 { font-size: 2rem; }
-    .legal-content h2 { font-size: 1.5rem; }
-    .legal-content h3 { font-size: 1.1rem; }
+    .legal-content h2 { font-size: 1.4rem; }
+    .legal-content h3 { font-size: 1rem; }
     
     .header-logo-slogan {
         font-size: 0.75rem !important; /* text-sm */
