@@ -343,7 +343,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (answers.question7 === 'optimization') { semrushPoints++; mangoolsPoints++; }
             if (answers.question8 === 'critical-health') semrushPoints += 2;
             if (answers.question8 === 'low-priority') mangoolsPoints += 2;
-            if (answers.question8 === 'basics') { semrushPoints++; mangools++; }
+            if (answers.question8 === 'basics') { semrushPoints++; mangoolsPoints++; }
 
             const recommendation = semrushPoints > mangoolsPoints ? 'SEMrush' : 'KWFinder (Mangools)';
             let details = {};
