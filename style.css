@@ -27,7 +27,7 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    padding-top: 3rem; /* Mobile-first: Padding for fixed header */
+    padding-top: 3rem; 
 }
 #main-header {
     position: fixed; /* Mobile-first: Fixed header */
@@ -38,6 +38,53 @@ body {
 main {
     flex-grow: 1;
 }
+
+/* --- Hero Section --- */
+.hero-section {
+    text-align: center;
+    padding: 2rem 1.5rem;
+    background-color: #fdfdff;
+    border-bottom: 1px solid var(--card-border);
+}
+.hero-icons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+.hero-icon-bg {
+    background-color: #f3f4f6;
+    border-radius: 9999px;
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.hero-section h1 {
+    font-size: 1.5rem;
+    font-weight: 800;
+    line-height: 1.2;
+    color: var(--text-color);
+    margin: 0;
+}
+.hero-subtitle {
+    font-size: 0.9rem;
+    color: var(--text-color-muted);
+    max-width: 600px;
+    margin: 0.75rem auto 0 auto;
+}
+.hero-meta {
+    margin-top: 1rem;
+    font-size: 0.7rem;
+    color: #6b7280;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+    align-items: center;
+}
+/* End Hero Section */
+
 
 /* Reading Progress Bar Styles */
 #progress-bar-container {
@@ -171,42 +218,21 @@ a:focus-visible, button:focus-visible, details > summary:focus-visible {
     color: var(--accent-color-dark) !important; 
     background-color: var(--link-hover-bg) !important;
 }
-.legal-content h1 {
-    background-color: var(--section-bg-alt);
-    padding: 1rem 1.5rem 0.5rem 1.5rem;
-    margin: 0;
-    text-align: center;
-    font-size: 1.3rem; /* Mobile-first H1 size */
-    font-weight: 800;
-    color: var(--text-color);
-    border-bottom: none;
-}
+
 .headline-underline {
     display: inline-block;
     border-bottom: 4px solid var(--accent-color);
     padding-bottom: 0.25rem;
     line-height: 1.3;
 }
-.legal-content .page-meta, .legal-content .intro-paragraph {
-    background-color: var(--section-bg-alt);
-    padding: 0 1.5rem 0.5rem 1.5rem;
-    margin: 0;
-    text-align: center;
-    font-size: 0.9rem;
-    color: var(--text-color-muted);
-}
-.intro-paragraph {
-     padding-bottom: 1rem;
-     border-bottom: 1px solid var(--card-border);
-     margin-bottom: 1rem;
-}
+
 .legal-content .section-wrapper, .legal-content .toc-box {
     margin-left: 1rem; /* Mobile-first margin */
     margin-right: 1rem; /* Mobile-first margin */
     padding: 1rem; /* Mobile-first padding */
 }
 .legal-content h2 {
-    font-size: 1rem; /* Mobile-first H2 size */
+    font-size: 1rem;
     font-weight: 700;
     color: var(--text-color);
     margin-top: 0.75rem;
@@ -221,7 +247,7 @@ a:focus-visible, button:focus-visible, details > summary:focus-visible {
     margin-top: 1.25rem;
     margin-bottom: 0.5rem;
 }
-.legal-content p:not(.page-meta):not(.intro-paragraph), .legal-content ul, .legal-content ol {
+.legal-content p:not(.hero-subtitle), .legal-content ul, .legal-content ol {
     color: var(--text-color-muted);
     margin-bottom: 1rem;
     line-height: 1.6;
@@ -621,7 +647,7 @@ footer .text-gray-500 {
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    gap: 0.75rem;
+    gap: 0.5rem;
     margin-top: 0.5rem;
 }
 
@@ -633,8 +659,8 @@ footer .text-gray-500 {
     text-decoration: none;
     color: white !important;
     transition: all 0.2s ease-in-out;
-    width: 36px;
-    height: 36px;
+    width: 32px;
+    height: 32px;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     border: none;
 }
@@ -645,8 +671,8 @@ footer .text-gray-500 {
 }
 
 .share-button svg {
-    width: 18px;
-    height: 18px;
+    width: 16px;
+    height: 16px;
     margin: 0;
 }
 
@@ -665,8 +691,8 @@ footer .text-gray-500 {
 .share-button.telegram { background-color: #24A1DE; }
 .share-button.telegram:hover { background-color: #1E88C0; }
 
-.share-button.reddit { background-color: #FF4500; }
-.share-button.reddit:hover { background-color: #cc3700; }
+.share-button.threads { background-color: #1a1a1a; }
+.share-button.threads:hover { background-color: #3f3f3f; }
 
 
 /* --- Mobile Header Hide on Scroll --- */
@@ -679,7 +705,7 @@ footer .text-gray-500 {
 /* Reduce logo size on mobile screens */
 @media (max-width: 639px) {
     .header-logo-slogan {
-        font-size: 0.65rem; /* Adjust from text-xs */
+        font-size: 0.6rem; 
     }
 }
 
@@ -707,9 +733,10 @@ footer .text-gray-500 {
 
 /* Desktop Styles */
 @media (min-width: 768px) {
-    .legal-content h1 { font-size: 2rem; }
-    .legal-content h2 { font-size: 1.2rem; }
-    .legal-content h3 { font-size: 1rem; }
+    .hero-section h1 { font-size: 2.25rem; }
+    .hero-subtitle { font-size: 1rem; }
+    .legal-content h2 { font-size: 1.5rem; }
+    .legal-content h3 { font-size: 1.1rem; }
     
     .header-logo-slogan {
         font-size: 0.75rem !important; /* text-sm */
