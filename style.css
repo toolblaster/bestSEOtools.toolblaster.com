@@ -527,38 +527,48 @@ a:focus-visible, button:focus-visible, details > summary:focus-visible {
 
 /* Table of Contents Box */
 .toc-box {
-    background-color: #fdfdff;
-    border: 1px solid var(--card-border);
+    background: linear-gradient(135deg, #fef2f2 0%, #fffbeb 100%);
+    border: 1px solid #fde2e1;
+    border-left: 4px solid var(--accent-color);
     border-radius: 0.5rem;
-    padding: 1rem; /* Mobile-first padding */
+    padding: 1.5rem;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+    margin-bottom: 1rem;
 }
 .toc-box summary {
-    list-style: none; /* Hide the default marker */
+    list-style: none;
     outline: none;
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--text-color);
 }
 .toc-box summary::-webkit-details-marker {
-    display: none; /* Hide the default marker for Chrome/Safari */
+    display: none;
 }
 .toc-arrow {
     transition: transform 0.2s ease-in-out;
+    color: var(--accent-color);
 }
-details[open] .toc-arrow {
+details[open] > summary .toc-arrow {
     transform: rotate(180deg);
 }
-.toc-box h3 {
-    color: var(--text-color);
+.toc-list {
+    margin-top: 1rem;
 }
 .toc-list li a {
     color: var(--text-color-muted);
     text-decoration: none;
     font-size: 0.9rem;
-    transition: color 0.2s;
+    transition: all 0.2s;
     display: block;
-    padding: 0.25rem 0;
+    padding: 0.35rem 0.5rem;
+    border-radius: 0.25rem;
 }
 .toc-list li a:hover {
     color: var(--accent-color);
-    font-weight: 500;
+    background-color: #fff;
+    font-weight: 600;
+    transform: translateX(4px);
 }
 
 /* Quiz Wrapper */
