@@ -241,7 +241,7 @@ a:focus-visible, button:focus-visible, details > summary:focus-visible {
     padding-bottom: 0.5rem;
 }
 .legal-content h3 {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     font-weight: 700;
     color: var(--text-color);
     margin-top: 1.25rem;
@@ -514,7 +514,7 @@ a:focus-visible, button:focus-visible, details > summary:focus-visible {
 }
 .verdict-item h3 {
     color: var(--text-color);
-    font-size: 1rem;
+    font-size: 0.95rem;
     font-weight: 700;
     margin-top: 0;
     margin-bottom: 0.5rem;
@@ -746,7 +746,7 @@ footer .text-gray-500 {
     .hero-section h1 { font-size: 2.25rem; }
     .hero-subtitle { font-size: 1rem; }
     .legal-content h2 { font-size: 1.5rem; }
-    .legal-content h3 { font-size: 1.1rem; }
+    .legal-content h3 { font-size: 1.0rem; }
     
     .header-logo-slogan {
         font-size: 0.75rem !important; /* text-sm */
