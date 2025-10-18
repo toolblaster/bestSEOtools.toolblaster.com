@@ -3,20 +3,20 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Template for the header on the main page (index.html)
     const indexHeader = `
-    <header id="main-header" class="bg-white shadow-md z-50 sticky top-0 transition-all duration-300">
+    <header id="main-header" class="bg-gradient-to-r from-white via-red-50 to-gray-100 z-50 sticky top-0 transition-all duration-300 border-b border-gray-200">
         <nav class="container mx-auto px-4 sm:px-6 lg:px-8" aria-label="Main Navigation">
-            <div class="flex items-center justify-center h-16">
+            <div class="flex items-center justify-center h-12">
                 <a href="/" class="header-logo inline-block text-center" aria-label="Back to Homepage">
-                    <div class="pb-1 border-b border-black">
-                        <div class="header-logo-main text-sm sm:text-xl font-bold text-gray-800 flex items-center justify-center">
-                           <svg class="w-7 h-7 sm:w-8 sm:h-8 mr-2 text-red-500" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <div class="pb-0.5 border-b border-black">
+                        <div class="header-logo-main text-[13px] sm:text-lg font-bold text-gray-800 flex items-center justify-center">
+                           <svg class="w-6 h-6 sm:w-7 sm:h-7 mr-2 text-red-500" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M3 3v18h18"/>
                                 <path d="m18 9-6 6-4-4-3 3"/>
                            </svg>
                            <span class="text-gray-900">BestSEOTools.toolblaster.com</span>
                         </div>
                     </div>
-                    <p class="header-logo-slogan text-gray-400 tracking-wider text-[0.65rem] sm:text-xs pt-1">Compare • Analyze • Rank</p>
+                    <p class="header-logo-slogan text-gray-400 tracking-wider text-[0.6rem] sm:text-xs pt-0.5">Compare • Analyze • Rank</p>
                 </a>
                 <div id="sticky-cta-container" class="hidden items-center space-x-2">
                     <a href="https://semrush.com/pricing" rel="nofollow sponsored" class="cta-button cta-semrush !text-sm !py-2 !px-4">Try SEMrush</a>
@@ -42,20 +42,20 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Template for the header on the contact/legal page
     const contactHeader = `
-    <header id="main-header" class="bg-white shadow-md z-50 sticky top-0 transition-all duration-300">
+    <header id="main-header" class="bg-gradient-to-r from-white via-red-50 to-gray-100 z-50 sticky top-0 transition-all duration-300 border-b border-gray-200">
         <nav class="container mx-auto px-4 sm:px-6 lg:px-8" aria-label="Main Navigation">
-            <div class="flex items-center justify-center h-16">
+            <div class="flex items-center justify-center h-12">
                 <a href="/" class="header-logo inline-block text-center" aria-label="Back to Homepage">
-                    <div class="pb-1 border-b border-black">
-                        <div class="header-logo-main text-xl font-bold text-gray-800 flex items-center justify-center">
-                           <svg class="w-8 h-8 mr-2 text-red-500" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <div class="pb-0.5 border-b border-black">
+                        <div class="header-logo-main text-[13px] sm:text-lg font-bold text-gray-800 flex items-center justify-center">
+                           <svg class="w-6 h-6 sm:w-7 sm:h-7 mr-2 text-red-500" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                <path d="M3 3v18h18"/>
                                <path d="m18 9-6 6-4-4-3 3"/>
                            </svg>
                            <span class="text-gray-900">BestSEOTools.toolblaster.com</span>
                         </div>
                     </div>
-                    <p class="header-logo-slogan text-gray-400 tracking-wider text-xs pt-1">Compare • Analyze • Rank</p>
+                    <p class="header-logo-slogan text-gray-400 tracking-wider text-[0.6rem] sm:text-xs pt-0.5">Compare • Analyze • Rank</p>
                 </a>
             </div>
         </nav>
