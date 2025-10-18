@@ -488,7 +488,7 @@ a:focus-visible, button:focus-visible, details > summary:focus-visible {
 }
 .verdict-item h3 {
     color: var(--text-color);
-    font-size: 0.9rem;
+    font-size: 1rem;
     font-weight: 700;
     margin-top: 0;
     margin-bottom: 0.5rem;
@@ -608,7 +608,7 @@ footer .text-gray-500 {
 }
 
 #share-section h2 {
-    font-size: 0.9rem;
+    font-size: 1rem;
     margin-bottom: 0.1rem;
 }
 #share-section p {
@@ -633,8 +633,8 @@ footer .text-gray-500 {
     text-decoration: none;
     color: white !important;
     transition: all 0.2s ease-in-out;
-    width: 40px;
-    height: 40px;
+    width: 36px;
+    height: 36px;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     border: none;
 }
@@ -645,8 +645,8 @@ footer .text-gray-500 {
 }
 
 .share-button svg {
-    width: 20px;
-    height: 20px;
+    width: 18px;
+    height: 18px;
     margin: 0;
 }
 
@@ -665,8 +665,8 @@ footer .text-gray-500 {
 .share-button.telegram { background-color: #24A1DE; }
 .share-button.telegram:hover { background-color: #1E88C0; }
 
-.share-button.threads { background-color: #1a1a1a; }
-.share-button.threads:hover { background-color: #3f3f3f; }
+.share-button.reddit { background-color: #FF4500; }
+.share-button.reddit:hover { background-color: #cc3700; }
 
 
 /* --- Mobile Header Hide on Scroll --- */
@@ -708,7 +708,7 @@ footer .text-gray-500 {
 /* Desktop Styles */
 @media (min-width: 768px) {
     .legal-content h1 { font-size: 2rem; }
-    .legal-content h2 { font-size: 1.4rem; }
+    .legal-content h2 { font-size: 1.2rem; }
     .legal-content h3 { font-size: 1rem; }
     
     .header-logo-slogan {
