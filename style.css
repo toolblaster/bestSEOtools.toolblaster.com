@@ -717,6 +717,9 @@ footer .text-gray-500 {
     .header-logo-slogan {
         font-size: 0.6rem; 
     }
+    .comparison-table th, .comparison-table td {
+        font-size: 0.65rem; /* Smaller font for tables on mobile */
+    }
 }
 
 /* Tablet Styles */
