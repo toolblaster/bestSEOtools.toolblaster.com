@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', function() {
     <footer class="bg-gray-900 text-white py-4">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <p class="text-xs text-gray-300">
-                &copy; 2025 bestseotools.toolblaster.com by Vikas Rana - All Rights Reserved | 
+                &copy; 2025 bestseotools.toolblaster.com by <a href="https://x.com/Vikasrana03" target="_blank" rel="noopener noreferrer" class="hover:text-white underline">Vikas Rana</a> - All Rights Reserved | 
                 <a href="/contact-us-and-legal.html" class="hover:text-white underline">Contact & Legal</a> |
                 <a href="https://toolblaster.com" target="_blank" rel="noopener" class="hover:text-white underline">toolblaster.com</a>
             </p>
@@ -64,7 +64,7 @@ document.addEventListener('DOMContentLoaded', function() {
     <footer class="bg-gray-900 text-white py-4">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <p class="text-xs text-gray-300">
-                &copy; 2025 bestseotools.toolblaster.com by Vikas Rana - All Rights Reserved | 
+                &copy; 2025 bestseotools.toolblaster.com by <a href="https://x.com/Vikasrana03" target="_blank" rel="noopener noreferrer" class="hover:text-white underline">Vikas Rana</a> - All Rights Reserved | 
                 <a href="/contact-us-and-legal.html" class="hover:text-white underline">Contact & Legal</a>
             </p>
         </div>
