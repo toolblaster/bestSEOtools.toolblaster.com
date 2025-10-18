@@ -23,7 +23,7 @@ body {
     color: var(--text-color);
     margin: 0;
     line-height: 1.6;
-    font-size: 14px; 
+    font-size: 10px; 
     display: flex;
     flex-direction: column;
     min-height: 100vh;
