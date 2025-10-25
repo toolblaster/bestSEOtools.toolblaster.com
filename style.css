@@ -251,6 +251,7 @@ a:focus-visible, button:focus-visible, details > summary:focus-visible {
     margin-bottom: 0.5rem; /* Reduced margin */
     border-bottom: 1px solid var(--accent-color);
     padding-bottom: 0.35rem; /* Reduced padding */
+    text-align: center; /* Center the heading text */
 }
 .legal-content h3 {
     font-size: 0.8rem; /* Slightly reduced */
@@ -422,6 +423,30 @@ a:focus-visible, button:focus-visible, details > summary:focus-visible {
 .workflow-image:hover, .highlight-image:hover {
     transform: scale(1.02);
     box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+}
+
+/* Define heights for chart containers */
+#summary-chart .chart-container {
+    position: relative;
+    height: 300px; /* Reduced height */
+    width:100%
+}
+#feature-comparison .chart-container {
+     position: relative;
+     height: 250px; /* Reduced height */
+     width:100%
+}
+#pricing-and-plans .chart-container {
+    position: relative;
+    height: 280px; /* Reduced height */
+    width:100%;
+    margin-bottom: 1.5rem; /* Slightly reduced margin */
+}
+#final-verdict .chart-container {
+    position: relative;
+    height: 250px; /* Reduced height */
+    width:100%;
+    margin-top: 1rem; /* Slightly reduced margin */
 }
 
 /* Chart Loader Styles */
