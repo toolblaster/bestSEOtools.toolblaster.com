@@ -43,7 +43,8 @@ main {
 .hero-section {
     text-align: center;
     padding: 1.5rem 1rem; /* Reduced padding */
-    background-color: #fdfdff;
+    /* background-color: #fdfdff; */ /* Replaced with gradient */
+    background: linear-gradient(180deg, #ffffff 0%, #fef2f2 100%); /* NEW light gradient */
     border-bottom: 1px solid var(--card-border);
 }
 .hero-icons {
@@ -212,7 +213,8 @@ a:focus-visible, button:focus-visible, details > summary:focus-visible {
 .legal-content {
     max-width: 1000px;
     margin: 1rem auto;
-    background-color: var(--card-bg);
+    /* background-color: var(--card-bg); */ /* Replaced with gradient */
+    background: linear-gradient(180deg, #fdfdfd 0%, #f9f9f9 100%); /* NEW subtle gradient */
     padding: 0;
     border-radius: 0.5rem;
     box-shadow: 0 4px 6px rgba(0,0,0,0.05);
@@ -274,9 +276,10 @@ a:focus-visible, button:focus-visible, details > summary:focus-visible {
     border-radius: 0.75rem;
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
     margin-bottom: 0.75rem; /* Reduced margin */
-    border-left: 4px solid var(--mangools-color); /* ADDED */
-    padding: 1rem; /* Unified padding */
-    padding-left: 1.5rem; /* ADDED - Needs to be larger than base padding */
+    /* border-left: 4px solid var(--mangools-color); */ /* REPLACED */
+    border: 2px solid var(--mangools-color); /* NEW - Border on all sides */
+    padding: 1.25rem; /* Unified padding */
+    /* padding-left: 1.5rem; */ /* REMOVED */
 }
 /* Styles for fade-in animation */
 .fade-in-section {
@@ -573,7 +576,7 @@ a:focus-visible, button:focus-visible, details > summary:focus-visible {
     border: 1px solid #fde2e1;
     border-left: 4px solid var(--accent-color);
     border-radius: 0.5rem;
-    padding: 1rem; /* Reduced padding */
+    padding: 0.75rem 1rem; /* Reduced padding */
     box-shadow: 0 4px 10px rgba(0,0,0,0.03);
     margin-bottom: 0.75rem; /* Match section margin */
 }
@@ -581,7 +584,7 @@ a:focus-visible, button:focus-visible, details > summary:focus-visible {
     list-style: none;
     outline: none;
     font-weight: 700;
-    font-size: 1rem; /* Reduced size */
+    font-size: 0.95rem; /* Reduced size */
     color: var(--text-color);
 }
 .toc-box summary::-webkit-details-marker {
@@ -595,15 +598,15 @@ details[open] > summary .toc-arrow {
     transform: rotate(180deg);
 }
 .toc-list {
-    margin-top: 1rem;
+    margin-top: 0.75rem; /* Reduced margin */
 }
 .toc-list li a {
     color: var(--text-color-muted);
     text-decoration: none;
-    font-size: 0.85rem; /* Reduced size */
+    font-size: 0.8rem; /* Reduced size */
     transition: all 0.2s;
     display: block;
-    padding: 0.3rem 0.4rem; /* Reduced padding */
+    padding: 0.25rem 0.4rem; /* Reduced padding */
     border-radius: 0.25rem;
 }
 .toc-list li a:hover {
@@ -753,10 +756,10 @@ footer .text-gray-500 {
 #action-plan,
 #faqs,
 .final-cta-section {
-    padding-top: 0.75rem; /* Reduced from 1.25rem */
-    padding-bottom: 0.75rem; /* Reduced from 1.25rem */
-    /* border-left: 4px solid var(--mangools-color); */ /* Removed - now generic */
-    padding-left: 1rem; /* Add padding to offset border */
+    padding-top: 0.5rem; /* Reduced padding */
+    padding-bottom: 0.5rem; /* Reduced padding */
+    padding-left: 0.75rem; /* Reduced padding */
+    padding-right: 0.75rem; /* Reduced padding */
 }
 
 /* Squeeze FAQ items */
@@ -764,11 +767,15 @@ footer .text-gray-500 {
     padding-bottom: 0.25rem; /* Tighter spacing */
     margin-bottom: 0.25rem;
 }
+#faqs .faq-item summary {
+    font-size: 0.8rem; /* Reduced font size */
+}
 #faqs .space-y-4 {
-    row-gap: 0.5rem; /* Tighter spacing */
+    row-gap: 0.25rem; /* Tighter spacing */
 }
 #faqs .pt-2 {
     padding-top: 0.25rem; /* Tighter spacing */
+    font-size: 0.75rem; /* Reduced font size */
 }
 
 /* Squeeze Action plan */
@@ -780,27 +787,33 @@ footer .text-gray-500 {
 }
 
 /* Squeeze Quiz */
+.final-cta-section h2 {
+    font-size: 0.85rem; /* Reduced font size */
+}
+.final-cta-section p {
+    font-size: 0.75rem; /* Reduced font size */
+}
 #interactive-quiz {
-    margin-top: 1rem; /* Reduced from 1.5rem */
-    padding: 1rem; /* Reduced from 1.5rem */
+    margin-top: 0.75rem; /* Reduced margin */
+    padding: 0.75rem; /* Reduced padding */
 }
 #interactive-quiz h3 {
-    font-size: 1.1rem; /* Smaller */
+    font-size: 1rem; /* Reduced font size */
 }
 #interactive-quiz p {
-    font-size: 0.8rem; /* Smaller */
+    font-size: 0.75rem; /* Reduced font size */
     margin-bottom: 0.5rem;
 }
 #quiz-container {
-    margin-top: 1rem; /* Reduced from 1rem */
+    margin-top: 0.75rem; /* Reduced margin */
 }
 .quiz-question .font-bold {
-    font-size: 0.9rem; /* Smaller */
+    font-size: 0.85rem; /* Reduced font size */
     margin-bottom: 0.25rem;
 }
 .quiz-option {
-    padding: 0.5rem; /* Reduced from 1rem */
-    font-size: 0.85rem;
+    padding: 0.4rem; /* Reduced padding */
+    font-size: 0.8rem; /* Reduced font size */
 }
 #quiz-result {
     margin-top: 1rem; /* Reduced from 1.5rem */
