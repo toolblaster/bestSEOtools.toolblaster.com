@@ -103,7 +103,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             grid: { color: '#e5e7eb' }, 
                             pointLabels: { 
                                 font: { 
-                                    size: isMobile ? 10 : 14, 
+                                    size: isMobile ? 9 : 12, // Slightly smaller mobile font
                                     weight: 'bold' 
                                 }, 
                                 color: '#374151' 
@@ -118,7 +118,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             position: 'top', 
                             labels: { 
                                 font: { 
-                                    size: isMobile ? 12 : 14 
+                                    size: isMobile ? 10 : 12 // Slightly smaller mobile font
                                 } 
                             } 
                         } 
@@ -144,7 +144,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             position: 'top',
                             labels: {
                                 font: {
-                                    size: isMobile ? 11 : 12
+                                    size: isMobile ? 10 : 11 // Slightly smaller mobile font
                                 }
                             }
                         }, 
@@ -170,7 +170,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             position: 'top',
                             labels: {
                                 font: {
-                                    size: isMobile ? 11 : 12
+                                    size: isMobile ? 10 : 11 // Slightly smaller mobile font
                                 }
                             }
                         } 
@@ -179,7 +179,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         x: {
                             ticks: {
                                 font: {
-                                    size: isMobile ? 10 : 12
+                                    size: isMobile ? 9 : 11 // Slightly smaller mobile font
                                 }
                             }
                         },
@@ -190,7 +190,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             title: { 
                                 display: true, 
                                 text: 'Price ($/mo)',
-                                font: { size: isMobile ? 10 : 12 }
+                                font: { size: isMobile ? 9 : 11 } // Slightly smaller mobile font
                             } 
                         }, 
                         'y-keywords': { 
@@ -200,7 +200,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             title: { 
                                 display: true, 
                                 text: 'Keywords Tracked',
-                                font: { size: isMobile ? 10 : 12 }
+                                font: { size: isMobile ? 9 : 11 } // Slightly smaller mobile font
                             }, 
                             grid: { 
                                 drawOnChartArea: false 
@@ -227,7 +227,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             position: 'top',
                             labels: {
                                 font: {
-                                    size: isMobile ? 11 : 12
+                                    size: isMobile ? 10 : 11 // Slightly smaller mobile font
                                 }
                             }
                         }, 
@@ -242,9 +242,16 @@ document.addEventListener('DOMContentLoaded', () => {
                             title: { 
                                 display: true, 
                                 text: 'Suitability Score (%)',
-                                font: { size: isMobile ? 10 : 12 }
+                                font: { size: isMobile ? 9 : 11 } // Slightly smaller mobile font
                             } 
-                        } 
+                        },
+                        y: { // Added y-axis font size adjustment
+                           ticks: {
+                                font: {
+                                    size: isMobile ? 9 : 11 // Slightly smaller mobile font
+                                }
+                            }
+                        }
                     } 
                 }
             });
