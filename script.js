@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const dateElement = document.getElementById('last-updated-date');
     if (dateElement) {
         const today = new Date();
-        const pastDate = new Date(today.setDate(today.getDate() - 5));
+        const pastDate = new Date(today.setDate(today.getDate() - 45)); // Changed from 5 to 45 days
         const displayFormatter = new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'long' });
         dateElement.textContent = `Last Updated: ${displayFormatter.format(pastDate)}`;
     }
