@@ -31,6 +31,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const handleScrollAndResize = () => {
         const currentScrollY = window.scrollY;
         const isMobile = window.innerWidth < 640;
+        // Check if the current page is the contact/legal page
+        const isContactPage = window.location.pathname.includes('contact-us-and-legal.html');
 
         if (progressBar) {
             const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
@@ -43,28 +45,39 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         if (header) {
-            if (isMobile) {
-                if (currentScrollY > lastScrollY && currentScrollY > header.offsetHeight) {
-                    header.classList.add('header-hidden');
+            // Only apply scroll logic if it's NOT the contact page
+            if (!isContactPage) {
+                if (isMobile) {
+                    if (currentScrollY > lastScrollY && currentScrollY > header.offsetHeight) {
+                        header.classList.add('header-hidden');
+                    } else {
+                        header.classList.remove('header-hidden');
+                    }
+                    if (ctaContainer) ctaContainer.classList.add('hidden');
+                    if (navFlexContainer) {
+                        navFlexContainer.classList.add('justify-center');
+                        navFlexContainer.classList.remove('justify-between');
+                    }
                 } else {
                     header.classList.remove('header-hidden');
-                }
-                if (ctaContainer) ctaContainer.classList.add('hidden');
-                if (navFlexContainer) {
-                    navFlexContainer.classList.add('justify-center');
-                    navFlexContainer.classList.remove('justify-between');
+                    const isScrolled = currentScrollY > scrollThreshold;
+                    if (ctaContainer) {
+                        ctaContainer.classList.toggle('hidden', !isScrolled);
+                        ctaContainer.classList.toggle('sm:flex', isScrolled);
+                    }
+                    if (navFlexContainer) {
+                        navFlexContainer.classList.toggle('justify-center', !isScrolled);
+                        navFlexContainer.classList.toggle('justify-between', isScrolled);
+                    }
                 }
             } else {
-                header.classList.remove('header-hidden');
-                const isScrolled = currentScrollY > scrollThreshold;
-                if (ctaContainer) {
-                    ctaContainer.classList.toggle('hidden', !isScrolled);
-                    ctaContainer.classList.toggle('sm:flex', isScrolled);
-                }
-                if (navFlexContainer) {
-                    navFlexContainer.classList.toggle('justify-center', !isScrolled);
-                    navFlexContainer.classList.toggle('justify-between', isScrolled);
-                }
+                 // Ensure header is always visible and centered on contact page
+                 header.classList.remove('header-hidden');
+                 if (ctaContainer) ctaContainer.classList.add('hidden'); // No sticky CTA on contact page
+                 if (navFlexContainer) {
+                    navFlexContainer.classList.add('justify-center');
+                    navFlexContainer.classList.remove('justify-between');
+                 }
             }
         }
         lastScrollY = currentScrollY <= 0 ? 0 : currentScrollY;
